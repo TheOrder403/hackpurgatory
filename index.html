@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</title>
+  <meta name="description" content="𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ es una comunidad creada por RIP Network, libre, dedicada a la ciberseguridad, la educación abierta y la lucha contra estafas y toxicidad en internet. Únete y aprende con nosotros.">
   <link rel="icon" type="image/png" href="logo.png">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
@@ -16,6 +17,53 @@
       width: 100%; height: 100%;
       object-fit: cover;
       z-index: -1;
+      transform: scale(1.2);
+    }
+
+   
+    #preloader {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      z-index: 99999;
+      transition: opacity 0.6s ease, visibility 0.6s ease;
+    }
+    #preloader img {
+      width: 120px;
+      margin-bottom: 20px;
+    }
+    .loader {
+      width: 60px;
+      height: 60px;
+      position: relative;
+    }
+    .dot {
+      width: 10px;
+      height: 10px;
+      background: #00ffcc;
+      border-radius: 50%;
+      position: absolute;
+      top: 0; left: 50%;
+      transform: translateX(-50%);
+      animation: spin 1.2s linear infinite;
+    }
+    .dot:nth-child(1) { transform: rotate(0deg) translateY(-25px); animation-delay: -1.1s; }
+    .dot:nth-child(2) { transform: rotate(45deg) translateY(-25px); animation-delay: -1s; }
+    .dot:nth-child(3) { transform: rotate(90deg) translateY(-25px); animation-delay: -0.9s; }
+    .dot:nth-child(4) { transform: rotate(135deg) translateY(-25px); animation-delay: -0.8s; }
+    .dot:nth-child(5) { transform: rotate(180deg) translateY(-25px); animation-delay: -0.7s; }
+    .dot:nth-child(6) { transform: rotate(225deg) translateY(-25px); animation-delay: -0.6s; }
+    .dot:nth-child(7) { transform: rotate(270deg) translateY(-25px); animation-delay: -0.5s; }
+    .dot:nth-child(8) { transform: rotate(315deg) translateY(-25px); animation-delay: -0.4s; }
+
+    @keyframes spin {
+      0% { opacity: 1; }
+      100% { opacity: 0.2; }
     }
 
     header {
@@ -118,10 +166,34 @@
       cursor: pointer;
       z-index: 10000;
     }
+
+    /* Contadores */
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin: 3rem 0;
+    }
+    .stat { text-align: center; }
+    .counter {
+      font-size: 2.5rem;
+      color: #fff;
+      text-shadow: 0 0 10px #00ffcc;
+      font-weight: bold;
+    }
+    .stat p { margin-top: 0.5rem; font-size: 1.1rem; color: #ddd; }
   </style>
 </head>
 <body>
 
+  <!-- Preloader -->
+  <div id="preloader">
+    <img src="logo.png" alt="Logo">
+    <div class="loader">
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+      <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+    </div>
+  </div>
 
   <video autoplay muted loop playsinline id="bg-video">
     <source src="fondo.webm" type="video/webm">
@@ -138,9 +210,7 @@
 
   <nav>
     <div class="menu-toggle" id="menu-toggle">
-      <div></div>
-      <div></div>
-      <div></div>
+      <div></div><div></div><div></div>
     </div>
     <ul id="menu">
       <li><a href="#About">Sobre Nosotros</a></li>
@@ -155,15 +225,15 @@
       <div class="features">
         <div class="feature">
           <h3>Objetivo Principal</h3>
-          <p>Nuestro objetivo principal es hacer libre todo el conocimiento posible de internet y luchar contra las organizaciones ilegales dentro de ellas que promueven actos ilegales, ventas ilegales, contenido inapropiado, toxicidad y mas. nos ocupamos de hacer que esos grupos no se expandan o lleguen a mas. compartimos lo que otros venden y enseñamos lo que otros te esconden, somos la puerta a tu aprendizaje sin ningun tipo de problema o miedo, estamos para proteger y limpiar internet, aprende con nosotros y explora todas tus posibilidades sin caer en malas manos de gente que promueve la venta ilegal y la toxicidad en grupos.</p>
+          <p>Nuestro objetivo principal es hacer libre todo el conocimiento posible de internet y luchar contra las organizaciones ilegales dentro de ellas que promueven actos ilegales, ventas ilegales, contenido inapropiado, toxicidad y más. Nos ocupamos de hacer que esos grupos no se expandan o lleguen a más. Compartimos lo que otros venden y enseñamos lo que otros te esconden, somos la puerta a tu aprendizaje sin ningún tipo de problema o miedo, estamos para proteger y limpiar internet, aprende con nosotros y explora todas tus posibilidades sin caer en malas manos de gente que promueve la venta ilegal y la toxicidad en grupos.</p>
         </div>
         <div class="feature">
           <h3>Recursos Libres</h3>
-          <p>Creemos en el conocimiento libre, nuestro fundador oficial RIP Network creo esta hermosa comunidad para que todos los nuevos y curiosos puedan avanzar de forma segura y libre, todos los recursos dentro de nuestra comunidad son totalmente gratuitos y libres, no vendemos, no pedimos, cualquier otro grupo que quiera hacer esto no se atribuye a nuestra mision o objetivos y no debes de fiarte de ellos, tus preguntas o dudas seran respondidas sin ningun precio con nosotros, somos la mayor comunidad mas grande de ciberseguridad estable y libre de cualquier cosa, ofrecemos cursos, materiales y mas cosas de forma gratuita.</p>
+          <p>Creemos en el conocimiento libre, nuestro fundador oficial RIP Network creó esta hermosa comunidad para que todos los nuevos y curiosos puedan avanzar de forma segura y libre. Todos los recursos dentro de nuestra comunidad son totalmente gratuitos y libres, no vendemos, no pedimos, cualquier otro grupo que quiera hacer esto no se atribuye a nuestra misión u objetivos y no debes de fiarte de ellos, tus preguntas o dudas serán respondidas sin ningún precio con nosotros. Somos la mayor comunidad más grande de ciberseguridad estable y libre de cualquier cosa, ofrecemos cursos, materiales y más cosas de forma gratuita.</p>
         </div>
         <div class="feature">
           <h3>Nuestra Filosofía</h3>
-          <p>Somos una comunidad firme y con reglas para que podamos tener un orden dentro de nosotros, el aceleracionismo es nuestra filosofia creemos que debemos acelerar todo para que internet pueda encontrar una nueva era que prospere correctamente sin ningun tipo de estafa o toxicidad, en esa mision hemos cerrado grupos, canales y comunidades dedicadas a promover y expandir estafas, somos una comunidad etica sin ningun tipo lucro con el unico objetivo de crear un internet mas limpio, La Unidad, un grupo dedicado a la limpieza de estafadores y toxicos se ocupa de tareas como esas para poder eliminar cualquier tipo de mala donducta.</p>
+          <p>Somos una comunidad firme y con reglas para que podamos tener un orden dentro de nosotros. El aceleracionismo es nuestra filosofía: creemos que debemos acelerar todo para que internet pueda encontrar una nueva era que prospere correctamente sin ningún tipo estafa o toxicidad. En esa misión hemos cerrado grupos, canales y comunidades dedicadas a promover y expandir estafas. Somos una comunidad ética sin ningún tipo lucro con el único objetivo de crear un internet más limpio. La Unidad, un grupo dedicado a la limpieza de estafadores y tóxicos, se ocupa de tareas como esas para poder eliminar cualquier tipo de mala conducta.</p>
         </div>
       </div>
     </section>
@@ -175,12 +245,29 @@
 
     <section id="contact">
       <h2>Canales</h2>
-      <p>Si deseas unirte, accede a nuestros canales oficiales para aprender y conocer a nueva gente dentro de nuestra comunidad, aqui tienes los botones directos a nuestros grupos y canales totalmente oficiales, eres totalmente Bienvenido:</p>
+      <p>Si deseas unirte, accede a nuestros canales oficiales para aprender y conocer a nueva gente dentro de nuestra comunidad, aquí tienes los botones directos a nuestros grupos y canales totalmente oficiales, eres totalmente Bienvenido:</p>
       <div class="channel-buttons">
         <a href="https://t.me/HackPurgatory" target="_blank">Telegram</a>
         <a href="https://discord.gg/xhKHkCW3YG" target="_blank">Discord</a>
       </div>
     </section>
+
+    <!-- Contadores -->
+    <div class="stats">
+      <div class="stat">
+        <h3 class="counter" data-target="29">0</h3>
+        <p>Grupos/Canales Cerrados</p>
+      </div>
+      <div class="stat">
+        <h3 class="counter" data-target="5">0</h3>
+        <p>Personas Expuestas</p>
+      </div>
+      <div class="stat">
+        <h3 class="counter" data-target="2">0</h3>
+        <p>Webs Eliminadas</p>
+      </div>
+    </div>
+
   </main>
 
   <footer>
@@ -188,7 +275,6 @@
   </footer>
 
   <button class="chatbot-toggle" id="chatbot-toggle">💬</button>
-
 
   <div class="chatbot-container" id="chatbot-container">
     <div class="chatbot-header" id="chatbot-header">Chat IA (Click para cerrar)</div>
@@ -203,7 +289,6 @@
       toggle.classList.toggle('active');
     });
 
-  
     const chatbotToggle = document.getElementById("chatbot-toggle");
     const chatbotContainer = document.getElementById("chatbot-container");
     const chatbotHeader = document.getElementById("chatbot-header");
@@ -214,9 +299,32 @@
     chatbotHeader.addEventListener("click", () => {
       chatbotContainer.style.display = "none";
     });
+
+    
+    const counters = document.querySelectorAll('.counter');
+    counters.forEach(counter => {
+      const target = +counter.getAttribute('data-target');
+      let count = 0;
+      const increment = Math.ceil(target / 100);
+      const updateCounter = () => {
+        count += increment;
+        if (count >= target) {
+          counter.textContent = target;
+        } else {
+          counter.textContent = count;
+          setTimeout(updateCounter, 30);
+        }
+      };
+      updateCounter();
+    });
+
+   
+    window.addEventListener("load", () => {
+      const preloader = document.getElementById("preloader");
+      preloader.style.opacity = "0";
+      preloader.style.visibility = "hidden";
+    });
   </script>
 
 </body>
 </html>
-
-
