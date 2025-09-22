@@ -1,277 +1,248 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</title>
-  <meta name="description" content="𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ es una comunidad creada por RIP Network, libre, dedicada a la ciberseguridad, la educación abierta y la lucha contra estafas y toxicidad en internet. Únete y aprende con nosotros.">
-  <link rel="icon" type="image/png" href="logo.png">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-    html, body { width: 100%; height: 100%; color: #fff; line-height: 1.6; overflow-x: hidden; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</title>
+<meta name="description" content="𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ es una comunidad creada por RIP Network, libre, dedicada a la ciberseguridad, la educación abierta y la lucha contra estafas y toxicidad en internet. Únete y aprende con nosotros.">
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 
-    #bg-video {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      object-fit: cover;
-      z-index: -1;
-      transform: scale(1.2);
-    }
+<style>
+  * {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+  html,body {width:100%; height:100%; color:#fff; line-height:1.6; overflow-x:hidden;}
+  #bg-video {position:fixed; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:-1; transform: scale(1.2);}
+  #preloader {position: fixed; top:0; left:0; width:100%; height:100%; background:#000; display:flex; justify-content:center; align-items:center; flex-direction:column; z-index:99999; transition: opacity 0.6s ease, visibility 0.6s ease;}
+  #preloader img {width:120px; margin-bottom:20px;}
+  .loader-bar {width:200px; height:15px; border:2px solid #00ffcc; border-radius:10px; overflow:hidden; background: rgba(255,255,255,0.1);}
+  .loader-bar .progress {width:0; height:100%; background:#00ffcc; animation: fillBar 10s linear forwards;}
+  @keyframes fillBar { from{width:0;} to{width:100%;} }
 
-   
-    #preloader {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: #000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      z-index: 99999;
-      transition: opacity 0.6s ease, visibility 0.6s ease;
-    }
-    #preloader img { width: 120px; margin-bottom: 20px; }
-    .loader-bar { width: 200px; height: 15px; border: 2px solid #00ffcc; border-radius: 10px; overflow: hidden; background: rgba(255,255,255,0.1); }
-    .loader-bar .progress { width: 0; height: 100%; background: #00ffcc; animation: fillBar 10s linear forwards; }
-    @keyframes fillBar { from { width: 0; } to { width: 100%; } }
+  header {background-color: rgba(0,0,0,0.5); padding:1rem 2rem; display:flex; align-items:center; gap:1rem; flex-wrap:wrap; border-bottom:2px solid #fff; justify-content:space-between; position:relative;}
+  header img {max-width:80px;}
+  .header-text {flex:1 1 200px;}
+  header h1 {font-size:2rem; margin-bottom:0.5rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.7);}
+  header p {font-size:1rem; color:#ddd; text-shadow: 1px 1px 5px rgba(0,0,0,0.5);}
 
-    header {
-      background-color: rgba(0,0,0,0.5);
-      padding: 1rem 2rem;
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      border-bottom: 2px solid #fff;
-      justify-content: space-between;
-    }
-    header img { max-width: 80px; }
-    .header-text { flex: 1 1 200px; }
-    header h1 { font-size: 2rem; margin-bottom: 0.5rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.7); }
-    header p { font-size: 1rem; color: #ddd; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
-    .user-profile {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: #fff;
-    }
-    .user-profile img { width: 40px; height: 40px; border-radius: 50%; border: 1px solid #fff; }
+  .user-profile {display:flex; align-items:center; gap:0.5rem; color:#fff; position:relative; cursor:pointer;}
+  .user-profile img {width:40px; height:40px; border-radius:50%; border:1px solid #fff;}
+  .guest-menu {position:absolute; top:60px; right:0; background:rgba(0,0,0,0.85); border:1px solid #00ffcc; border-radius:8px; display:none; min-width:150px; z-index:1000;}
+  .guest-menu ul {list-style:none; padding:0.5rem 0; margin:0;}
+  .guest-menu ul li {padding:0.5rem 1rem;}
+  .guest-menu ul li a {color:#fff; text-decoration:none; display:block;}
+  .guest-menu ul li a:hover {background-color:#00ffcc; color:#000; border-radius:5px;}
 
-    nav { background-color: rgba(0,0,0,0.5); position: relative; }
-    .menu-toggle { display: none; flex-direction: column; cursor: pointer; padding: 1rem; z-index: 1000; }
-    .menu-toggle div { width: 25px; height: 3px; background-color: #fff; margin: 5px 0; transition: 0.4s; }
-    .menu-toggle.active div:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
-    .menu-toggle.active div:nth-child(2) { opacity: 0; }
-    .menu-toggle.active div:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-    nav ul { list-style: none; display: flex; justify-content: center; transition: max-height 0.3s; }
-    nav ul li { margin: 0 1rem; }
-    nav ul li a { color: #fff; text-decoration: none; padding: 1rem; display: block; transition: color 0.3s, background 0.3s, transform 0.3s; }
-    nav ul li a:hover { background-color: #fff; color: #000; border-radius: 5px; transform: translateY(-2px); }
+  nav {background-color: rgba(0,0,0,0.5); position:relative;}
+  .menu-toggle {display:none; flex-direction:column; cursor:pointer; padding:1rem; z-index:1000;}
+  .menu-toggle div {width:25px; height:3px; background-color:#fff; margin:5px 0; transition:0.4s;}
+  .menu-toggle.active div:nth-child(1){transform: rotate(45deg) translate(5px,5px);}
+  .menu-toggle.active div:nth-child(2){opacity:0;}
+  .menu-toggle.active div:nth-child(3){transform: rotate(-45deg) translate(5px,-5px);}
+  nav ul {list-style:none; display:flex; justify-content:center; transition:max-height 0.3s;}
+  nav ul li {margin:0 1rem;}
+  nav ul li a {color:#fff; text-decoration:none; padding:1rem; display:block; transition: color 0.3s, background 0.3s, transform 0.3s;}
+  nav ul li a:hover {background-color:#fff; color:#000; border-radius:5px; transform: translateY(-2px);}
 
-    main { padding: 3rem 1rem; max-width: 1000px; margin: 3rem auto; background-color: rgba(0,0,0,0.65); border-radius: 15px; }
-    section { margin-bottom: 3rem; }
-    section h2 { font-size: 1.8rem; margin-bottom: 1rem; border-bottom: 2px solid #fff; display: inline-block; padding-bottom: 0.5rem; }
+  main {padding:3rem 1rem; max-width:1000px; margin:3rem auto; background-color: rgba(0,0,0,0.65); border-radius:15px;}
+  section {margin-bottom:3rem;}
+  section h2 {font-size:1.8rem; margin-bottom:1rem; border-bottom:2px solid #fff; display:inline-block; padding-bottom:0.5rem;}
 
-    .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-    .feature { background-color: rgba(255,255,255,0.1); padding: 1.5rem; border: 1px solid #fff; border-radius: 10px; transition: transform 0.3s, box-shadow 0.3s; }
-    .feature:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(255,255,255,0.3); }
+  .features {display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:1.5rem; margin-top:1.5rem;}
+  .feature {background-color: rgba(255,255,255,0.1); padding:1.5rem; border:1px solid #fff; border-radius:10px; transition: transform 0.3s, box-shadow 0.3s;}
+  .feature:hover {transform: translateY(-5px); box-shadow:0 10px 20px rgba(255,255,255,0.3);}
 
-    .channel-buttons, .app-buttons { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
-    .channel-buttons a, .app-buttons a {
-      text-decoration: none;
-      color: #fff;
-      background-color: #111;
-      padding: 0.8rem 1.5rem;
-      border-radius: 10px;
-      transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-    }
-    .channel-buttons a:hover, .app-buttons a:hover {
-      background-color: #00ffcc;
-      color: #000;
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0,255,204,0.5);
-    }
-    .app-description { margin-top: 0.5rem; text-align: center; color: #ddd; font-size: 0.95rem; }
+  .channel-buttons, .app-buttons {margin-top:1rem; display:flex; flex-wrap:wrap; gap:1rem; justify-content:center;}
+  .channel-buttons a, .app-buttons a {text-decoration:none; color:#fff; background-color:#111; padding:0.8rem 1.5rem; border-radius:10px; transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;}
+  .channel-buttons a:hover, .app-buttons a:hover {background-color:#00ffcc; color:#000; transform:translateY(-3px); box-shadow:0 5px 15px rgba(0,255,204,0.5);}
+  .app-description {margin-top:0.5rem; text-align:center; color:#ddd; font-size:0.95rem;}
 
-    footer { text-align: center; padding: 2rem 1rem; border-top: 1px solid #fff; color: #ccc; }
+  .stats {display:flex; justify-content:center; gap:3rem; margin:3rem 0; flex-wrap:wrap;}
+  .stat {text-align:center; flex:1 1 120px;}
+  .counter {font-size:2.5rem; color:#fff; text-shadow:0 0 10px #00ffcc; font-weight:bold;}
+  .stat p {margin-top:0.5rem; font-size:1.1rem; color:#ddd;}
 
-    @media (max-width: 768px) {
-      .menu-toggle { display: flex; }
-      nav ul { flex-direction: column; max-height: 0; overflow: hidden; }
-      nav ul.show { max-height: 500px; }
-      nav ul li { margin: 0; text-align: center; }
-      header { justify-content: center; text-align: center; }
-      .user-profile { margin-top: 0.5rem; }
-      header h1 { font-size: 1.6rem; }
-      section h2 { font-size: 1.5rem; }
-    }
+  #mapa {max-width:1000px; margin:3rem auto; padding:1.5rem; background-color: rgba(0,0,0,0.65); border-radius:15px; text-align:center;}
+  #mapa h2 {font-size:1.8rem; margin-bottom:1rem; border-bottom:2px solid #fff; display:inline-block; padding-bottom:0.5rem;}
+  #world-map {width:100%; height:500px; border-radius:15px; margin-top:1rem; box-shadow:0 0 20px rgba(0,255,204,0.3);}
+  
+  footer {text-align:center; padding:2rem 1rem; border-top:1px solid #fff; color:#ccc; font-size:0.9rem;}
 
-   
-    .chatbot-container { position: fixed; bottom: 20px; right: 20px; width: 350px; height: 500px; background: #fff; border: 2px solid #000; border-radius: 10px; overflow: hidden; z-index: 9999; display: none; flex-direction: column; }
-    .chatbot-header { background: #000; color: #fff; padding: 10px; text-align: center; font-weight: bold; cursor: pointer; }
-    .chatbot-iframe { flex: 1; border: none; width: 100%; height: 100%; }
-    .chatbot-toggle { position: fixed; bottom: 20px; right: 20px; background: #000; color: #fff; border: none; border-radius: 50%; width: 60px; height: 60px; font-size: 24px; cursor: pointer; z-index: 10000; }
+  @media(max-width:768px){
+    .menu-toggle{display:flex;}
+    nav ul{flex-direction:column; max-height:0; overflow:hidden;}
+    nav ul.show{max-height:500px;}
+    nav ul li{margin:0; text-align:center;}
+    header{justify-content:center; text-align:center;}
+    .user-profile{margin-top:0.5rem;}
+    header h1{font-size:1.6rem;}
+    section h2{font-size:1.5rem;}
+    #world-map{height:350px;}
+  }
 
-
-    .stats { display: flex; justify-content: center; gap: 3rem; margin: 3rem 0; }
-    .stat { text-align: center; }
-    .counter { font-size: 2.5rem; color: #fff; text-shadow: 0 0 10px #00ffcc; font-weight: bold; }
-    .stat p { margin-top: 0.5rem; font-size: 1.1rem; color: #ddd; }
-  </style>
+  .chatbot-container {position: fixed; bottom:20px; right:20px; width:350px; height:500px; background:#fff; border:2px solid #000; border-radius:10px; overflow:hidden; z-index:9999; display:none; flex-direction:column;}
+  .chatbot-header {background:#000; color:#fff; padding:10px; text-align:center; font-weight:bold; cursor:pointer;}
+  .chatbot-iframe {flex:1; border:none; width:100%; height:100%;}
+  .chatbot-toggle {position:fixed; bottom:20px; right:20px; background:#000; color:#fff; border:none; border-radius:50%; width:60px; height:60px; font-size:24px; cursor:pointer; z-index:10000;}
+</style>
 </head>
 <body>
 
+<div id="preloader">
+  <img src="logo.png" alt="Logo">
+  <div class="loader-bar"><div class="progress"></div></div>
+</div>
 
-  <div id="preloader">
-    <img src="logo.png" alt="Logo">
-    <div class="loader-bar">
-      <div class="progress"></div>
+<video autoplay muted loop playsinline id="bg-video">
+  <source src="fondo.webm" type="video/webm">
+  Tu navegador no soporta videos de fondo.
+</video>
+
+<header>
+  <img src="logo.png" alt="Logo de la Comunidad">
+  <div class="header-text">
+    <h1>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</h1>
+    <p>Bienvenido a Nuestra Comunidad.</p>
+  </div>
+  <div class="user-profile">
+    <img src="guest.png" alt="Usuario Invitado" id="guest-avatar">
+    <span id="guest-name">Guest</span>
+    <div class="guest-menu" id="guest-menu">
+      <ul>
+        <li><a href="#">Perfil</a></li>
+        <li><a href="#">Configuración</a></li>
+        <li><a href="#">Cerrar sesión</a></li>
+      </ul>
     </div>
   </div>
+</header>
 
-  <video autoplay muted loop playsinline id="bg-video">
-    <source src="fondo.webm" type="video/webm">
-    Tu navegador no soporta videos de fondo.
-  </video>
+<nav>
+  <div class="menu-toggle" id="menu-toggle"><div></div><div></div><div></div></div>
+  <ul id="menu">
+    <li><a href="#About">Sobre Nosotros</a></li>
+    <li><a href="#Info">Información</a></li>
+    <li><a href="#contact">Canales</a></li>
+    <li><a href="#apps">Aplicaciones</a></li>
+    <li><a href="#stats">Estadisticas</a></li>
+  </ul>
+</nav>
 
-  <header>
-    <img src="logo.png" alt="Logo de la Comunidad">
-    <div class="header-text">
-      <h1>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</h1>
-      <p>Bienvenido a Nuestra Comunidad.</p>
+<main>
+  <section id="About">
+    <h2>Sobre Nosotros</h2>
+    <div class="features">
+      <div class="feature"><h3>Objetivo Principal</h3><p>Nuestro objetivo principal es hacer libre todo el conocimiento posible de internet y luchar contra las organizaciones ilegales dentro de ellas que promueven actos ilegales, ventas ilegales, contenido inapropiado, toxicidad y más. Nos ocupamos de hacer que esos grupos no se expandan o lleguen a más. Compartimos lo que otros venden y enseñamos lo que otros te esconden, somos la puerta a tu aprendizaje sin ningún tipo de problema o miedo, estamos para proteger y limpiar internet, aprende con nosotros y explora todas tus posibilidades sin caer en malas manos de gente que promueve la venta ilegal y la toxicidad en grupos.</p></div>
+      <div class="feature"><h3>Recursos Libres</h3><p>Creemos en el conocimiento libre, nuestro fundador oficial RIP Network creó esta hermosa comunidad para que todos los nuevos y curiosos puedan avanzar de forma segura y libre. Todos los recursos dentro de nuestra comunidad son totalmente gratuitos y libres, no vendemos, no pedimos, cualquier otro grupo que quiera hacer esto no se atribuye a nuestra misión u objetivos y no debes de fiarte de ellos, tus preguntas o dudas serán respondidas sin ningún precio con nosotros. Somos la mayor comunidad más grande de ciberseguridad estable y libre de cualquier cosa, ofrecemos cursos, materiales y más cosas de forma gratuita.</p></div>
+      <div class="feature"><h3>Nuestra Filosofía</h3><p>Somos una comunidad firme y con reglas para que podamos tener un orden dentro de nosotros. El aceleracionismo es nuestra filosofía: creemos que debemos acelerar todo para que internet pueda encontrar una nueva era que prospere correctamente sin ningún tipo estafa o toxicidad. En esa misión hemos cerrado grupos, canales y comunidades dedicadas a promover y expandir estafas. Somos una comunidad ética sin ningún tipo lucro con el único objetivo de crear un internet más limpio. La Unidad, un grupo dedicado a la limpieza de estafadores y tóxicos, se ocupa de tareas como esas para poder eliminar cualquier tipo de mala conducta.</p></div>
     </div>
-    <div class="user-profile">
-      <img src="guest.png" alt="Usuario Invitado">
-      <span>Guest</span>
+  </section>
+
+  <section id="Info">
+    <h2>Información</h2>
+    <p>Esta comunidad se dedica únicamente a la investigación, el aprendizaje libre y la lucha contra estafas y ventas ilegales en internet. No promovemos actividades ilegales ni lucrativas. Nuestro objetivo es eliminar, exponer y compartir conocimientos de forma ética, ayudando a crear un internet más seguro entre todos y ayudarnos mutuamente.</p>
+  </section>
+
+  <section id="contact">
+    <h2>Canales</h2>
+    <p>Si deseas unirte, accede a nuestros canales oficiales para aprender y conocer a nueva gente dentro de nuestra comunidad, aquí tienes los botones directos a nuestros grupos y canales totalmente oficiales, eres totalmente Bienvenido:</p>
+    <div class="channel-buttons">
+      <a href="https://t.me/HackPurgatory" target="_blank">Telegram</a>
+      <a href="https://discord.gg/xhKHkCW3YG" target="_blank">Discord</a>
     </div>
-  </header>
+  </section>
 
-  <nav>
-    <div class="menu-toggle" id="menu-toggle">
-      <div></div><div></div><div></div>
+  <section id="apps">
+    <h2>Nuestras Aplicaciones</h2>
+    <p>Aplicaciones oficiales diseñadas para mejorar y protegerte, estas APK son aplicaciones libres y gratuitas para que puedas usarlas en cualquier dispositivo cumpliendo su deber, aqui tienes gran variedad para elegir.</p>
+    <div class="app-buttons">
+      <a href="https://mediafire.com" target="_blank">HackPurgatoryVPN</a>
     </div>
-    <ul id="menu">
-      <li><a href="#About">Sobre Nosotros</a></li>
-      <li><a href="#Info">Información</a></li>
-      <li><a href="#contact">Canales</a></li>
-      <li><a href="#apps">Aplicaciones</a></li>
-      <li><a href="#stats">Estadisticas</a></li>
-    </ul>
-  </nav>
+    <p class="app-description">Conéctate de forma segura y rápida con nuestra VPN. Basada en WireGuard, protege tu privacidad, cifra tus datos y mantiene tu conexión estable en todo momento. Fácil de usar y totalmente segura.</p>
+  </section>
 
-  <main>
-    <section id="About">
-      <h2>Sobre Nosotros</h2>
-      <div class="features">
-        <div class="feature">
-          <h3>Objetivo Principal</h3>
-          <p>Nuestro objetivo principal es hacer libre todo el conocimiento posible de internet y luchar contra las organizaciones ilegales dentro de ellas que promueven actos ilegales, ventas ilegales, contenido inapropiado, toxicidad y más. Nos ocupamos de hacer que esos grupos no se expandan o lleguen a más. Compartimos lo que otros venden y enseñamos lo que otros te esconden, somos la puerta a tu aprendizaje sin ningún tipo de problema o miedo, estamos para proteger y limpiar internet, aprende con nosotros y explora todas tus posibilidades sin caer en malas manos de gente que promueve la venta ilegal y la toxicidad en grupos.</p>
-        </div>
-        <div class="feature">
-          <h3>Recursos Libres</h3>
-          <p>Creemos en el conocimiento libre, nuestro fundador oficial RIP Network creó esta hermosa comunidad para que todos los nuevos y curiosos puedan avanzar de forma segura y libre. Todos los recursos dentro de nuestra comunidad son totalmente gratuitos y libres, no vendemos, no pedimos, cualquier otro grupo que quiera hacer esto no se atribuye a nuestra misión u objetivos y no debes de fiarte de ellos, tus preguntas o dudas serán respondidas sin ningún precio con nosotros. Somos la mayor comunidad más grande de ciberseguridad estable y libre de cualquier cosa, ofrecemos cursos, materiales y más cosas de forma gratuita.</p>
-        </div>
-        <div class="feature">
-          <h3>Nuestra Filosofía</h3>
-          <p>Somos una comunidad firme y con reglas para que podamos tener un orden dentro de nosotros. El aceleracionismo es nuestra filosofía: creemos que debemos acelerar todo para que internet pueda encontrar una nueva era que prospere correctamente sin ningún tipo estafa o toxicidad. En esa misión hemos cerrado grupos, canales y comunidades dedicadas a promover y expandir estafas. Somos una comunidad ética sin ningún tipo lucro con el único objetivo de crear un internet más limpio. La Unidad, un grupo dedicado a la limpieza de estafadores y tóxicos, se ocupa de tareas como esas para poder eliminar cualquier tipo de mala conducta.</p>
-        </div>
-      </div>
-    </section>
-
-    <section id="Info">
-      <h2>Información</h2>
-      <p>Esta comunidad se dedica únicamente a la investigación, el aprendizaje libre y la lucha contra estafas y ventas ilegales en internet. No promovemos actividades ilegales ni lucrativas. Nuestro objetivo es eliminar, exponer y compartir conocimientos de forma ética, ayudando a crear un internet más seguro entre todos y ayudarnos mutuamente.</p>
-    </section>
-
-    <section id="contact">
-      <h2>Canales</h2>
-      <p>Si deseas unirte, accede a nuestros canales oficiales para aprender y conocer a nueva gente dentro de nuestra comunidad, aquí tienes los botones directos a nuestros grupos y canales totalmente oficiales, eres totalmente Bienvenido:</p>
-      <div class="channel-buttons">
-        <a href="https://t.me/HackPurgatory" target="_blank">Telegram</a>
-        <a href="https://discord.gg/xhKHkCW3YG" target="_blank">Discord</a>
-      </div>
-    </section>
-
-    <section id="apps">
-      <h2>Nuestras Aplicaciones</h2>
-      <p>Aplicaciones oficiales diseñadas para mejorar y protegerte, estas APK son aplicaciones libres y gratuitas para que puedas usarlas en cualquier dispositivo cumpliendo su deber, aqui tienes gran variedad para elegir.</p>
-      <div class="app-buttons">
-        <a href="https://mediafire.com" target="_blank">HackPurgatoryVPN</a>
-      </div>
-      <p class="app-description">Conéctate de forma segura y rápida con nuestra VPN. Basada en WireGuard, protege tu privacidad, cifra tus datos y mantiene tu conexión estable en todo momento. Fácil de usar y totalmente segura.</p>
-    </section>
-
-    <div class="stats" id="stats">
-      <div class="stat">
-        <h3 class="counter" data-target="29">0</h3>
-        <p>Grupos/Canales Cerrados</p>
-      </div>
-      <div class="stat">
-        <h3 class="counter" data-target="5">0</h3>
-        <p>Personas Expuestas</p>
-      </div>
-      <div class="stat">
-        <h3 class="counter" data-target="2">0</h3>
-        <p>Webs Eliminadas</p>
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    &copy; 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ 2025. Todos los derechos reservados.
-  </footer>
-
-  <button class="chatbot-toggle" id="chatbot-toggle">💬</button>
-  <div class="chatbot-container" id="chatbot-container">
-    <div class="chatbot-header" id="chatbot-header">Chat IA (Click para cerrar)</div>
-    <iframe class="chatbot-iframe" src="https://www.chatbase.co/chatbot-iframe/bp2j35GeqPu1B-R1KWOyH" title="Chatbot IA"></iframe>
+  <div class="stats" id="stats">
+    <div class="stat"><h3 class="counter" data-target="29">0</h3><p>Grupos/Canales Cerrados</p></div>
+    <div class="stat"><h3 class="counter" data-target="5">0</h3><p>Personas Expuestas</p></div>
+    <div class="stat"><h3 class="counter" data-target="2">0</h3><p>Webs Eliminadas</p></div>
   </div>
 
-  <script>
-    const toggle = document.getElementById('menu-toggle');
-    const menu = document.getElementById('menu');
-    toggle.addEventListener('click', () => {
-      menu.classList.toggle('show');
-      toggle.classList.toggle('active');
-    });
+  <section id="mapa">
+    <h2>Conexiones Globales</h2>
+    <div id="world-map"></div>
+  </section>
+</main>
 
-    const chatbotToggle = document.getElementById("chatbot-toggle");
-    const chatbotContainer = document.getElementById("chatbot-container");
-    const chatbotHeader = document.getElementById("chatbot-header");
+<footer>
+  &copy; 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ 2025. Todos los derechos reservados.
+</footer>
 
-    chatbotToggle.addEventListener("click", () => {
-      chatbotContainer.style.display = chatbotContainer.style.display === "flex" ? "none" : "flex";
-    });
-    chatbotHeader.addEventListener("click", () => {
-      chatbotContainer.style.display = "none";
-    });
+<button class="chatbot-toggle" id="chatbot-toggle">💬</button>
+<div class="chatbot-container" id="chatbot-container">
+  <div class="chatbot-header" id="chatbot-header">Chat IA (Click para cerrar)</div>
+  <iframe class="chatbot-iframe" src="https://www.chatbase.co/chatbot-iframe/bp2j35GeqPu1B-R1KWOyH" title="Chatbot IA"></iframe>
+</div>
 
-    const counters = document.querySelectorAll('.counter');
-    counters.forEach(counter => {
-      const target = +counter.getAttribute('data-target');
-      let count = 0;
-      const increment = Math.ceil(target / 100);
-      const updateCounter = () => {
-        count += increment;
-        if (count >= target) {
-          counter.textContent = target;
-        } else {
-          counter.textContent = count;
-          setTimeout(updateCounter, 30);
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script>
+  // Menu móvil
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('menu');
+  toggle.addEventListener('click',()=>{menu.classList.toggle('show'); toggle.classList.toggle('active');});
+
+  // Chatbot
+  const chatbotToggle=document.getElementById("chatbot-toggle");
+  const chatbotContainer=document.getElementById("chatbot-container");
+  const chatbotHeader=document.getElementById("chatbot-header");
+  chatbotToggle.addEventListener("click",()=>{chatbotContainer.style.display=chatbotContainer.style.display==="flex"?"none":"flex";});
+  chatbotHeader.addEventListener("click",()=>{chatbotContainer.style.display="none";});
+
+  // Contadores
+  const counters=document.querySelectorAll('.counter');
+  counters.forEach(counter=>{const target=+counter.getAttribute('data-target'); let count=0; const increment=Math.ceil(target/100); const updateCounter=()=>{count+=increment;if(count>=target){counter.textContent=target;}else{counter.textContent=count;setTimeout(updateCounter,30);}}; updateCounter();});
+
+  // Preloader
+  window.addEventListener("load",()=>{const preloader=document.getElementById("preloader"); setTimeout(()=>{preloader.style.opacity="0"; preloader.style.visibility="hidden";},10000);});
+
+  // Menú Guest
+  const guestAvatar=document.getElementById('guest-avatar');
+  const guestName=document.getElementById('guest-name');
+  const guestMenu=document.getElementById('guest-menu');
+  [guestAvatar,guestName].forEach(el=>el.addEventListener('click',()=>{guestMenu.style.display=guestMenu.style.display==='block'?'none':'block';}));
+  window.addEventListener('click',function(e){if(!guestAvatar.contains(e.target)&&!guestName.contains(e.target)&&!guestMenu.contains(e.target)){guestMenu.style.display='none';}});
+
+  // Mapa Mundial
+  const map=L.map('world-map',{center:[20,0], zoom:2, zoomControl:true});
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
+    attribution:'&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>', subdomains:'abcd', maxZoom:19
+  }).addTo(map);
+
+  const conexiones=[
+    {iso:"US", visitas:50},{iso:"ES", visitas:30},{iso:"BR", visitas:20},
+    {iso:"IN", visitas:40},{iso:"CN", visitas:35},{iso:"FR", visitas:25}
+  ];
+
+  function getColor(visitas){return visitas>40?'#ffffff':visitas>35?'#cccccc':visitas>25?'#999999':visitas>15?'#777777':'#555555';}
+
+  fetch('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json')
+    .then(res=>res.json())
+    .then(geojson=>{
+      L.geoJson(geojson,{
+        style:function(feature){
+          const pais=conexiones.find(c=>c.iso===feature.id);
+          return {color:'#333', weight:1, fillColor:pais?getColor(pais.visitas):'#222', fillOpacity:0.8};
+        },
+        onEachFeature:function(feature,layer){
+          const pais=conexiones.find(c=>c.iso===feature.id);
+          if(pais){
+            let opacity=0.8;
+            setInterval(()=>{
+              opacity=opacity===0.8?0.4:0.8;
+              layer.setStyle({fillOpacity:opacity});
+            },1000);
+          }
         }
-      };
-      updateCounter();
+      }).addTo(map);
     });
-
-    window.addEventListener("load", () => {
-      const preloader = document.getElementById("preloader");
-      setTimeout(() => {
-        preloader.style.opacity = "0";
-        preloader.style.visibility = "hidden";
-      }, 10000);
-    });
-  </script>
+</script>
 </body>
 </html>
