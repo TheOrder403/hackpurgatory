@@ -161,9 +161,9 @@
   </section>
 
   <div class="stats" id="stats">
-    <div class="stat"><h3 class="counter" data-target="29">0</h3><p>Grupos/Canales Cerrados</p></div>
-    <div class="stat"><h3 class="counter" data-target="5">0</h3><p>Personas Expuestas</p></div>
-    <div class="stat"><h3 class="counter" data-target="2">0</h3><p>Webs Eliminadas</p></div>
+    <div class="stat"><h3 class="counter" data-target="48">0</h3><p>Grupos/Canales Cerrados</p></div>
+    <div class="stat"><h3 class="counter" data-target="11">0</h3><p>Personas Expuestas</p></div>
+    <div class="stat"><h3 class="counter" data-target="6">0</h3><p>Webs Eliminadas</p></div>
   </div>
 
   <section id="mapa">
@@ -184,33 +184,33 @@
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
-  // Menu móvil
+ 
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('menu');
   toggle.addEventListener('click',()=>{menu.classList.toggle('show'); toggle.classList.toggle('active');});
 
-  // Chatbot
+
   const chatbotToggle=document.getElementById("chatbot-toggle");
   const chatbotContainer=document.getElementById("chatbot-container");
   const chatbotHeader=document.getElementById("chatbot-header");
   chatbotToggle.addEventListener("click",()=>{chatbotContainer.style.display=chatbotContainer.style.display==="flex"?"none":"flex";});
   chatbotHeader.addEventListener("click",()=>{chatbotContainer.style.display="none";});
 
-  // Contadores
+
   const counters=document.querySelectorAll('.counter');
   counters.forEach(counter=>{const target=+counter.getAttribute('data-target'); let count=0; const increment=Math.ceil(target/100); const updateCounter=()=>{count+=increment;if(count>=target){counter.textContent=target;}else{counter.textContent=count;setTimeout(updateCounter,30);}}; updateCounter();});
 
-  // Preloader
+  
   window.addEventListener("load",()=>{const preloader=document.getElementById("preloader"); setTimeout(()=>{preloader.style.opacity="0"; preloader.style.visibility="hidden";},10000);});
 
-  // Menú Guest
+  
   const guestAvatar=document.getElementById('guest-avatar');
   const guestName=document.getElementById('guest-name');
   const guestMenu=document.getElementById('guest-menu');
   [guestAvatar,guestName].forEach(el=>el.addEventListener('click',()=>{guestMenu.style.display=guestMenu.style.display==='block'?'none':'block';}));
   window.addEventListener('click',function(e){if(!guestAvatar.contains(e.target)&&!guestName.contains(e.target)&&!guestMenu.contains(e.target)){guestMenu.style.display='none';}});
 
-  // Mapa Mundial
+  
   const map=L.map('world-map',{center:[20,0], zoom:2, zoomControl:true});
   L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png',{
     attribution:'&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>', subdomains:'abcd', maxZoom:19
@@ -246,3 +246,4 @@
 </script>
 </body>
 </html>
+
