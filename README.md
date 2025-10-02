@@ -1,62 +1,79 @@
 <div align="center">
-  <img src="https://hackpurgatory.es/data/logo.png" alt="Logo" width="150px">
 
-  # 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™
-  **Bienvenido a Nuestra Comunidad**
-  
-  <p>
-    Comunidad libre dedicada a la **ciberseguridad**, la **educación abierta** y la **lucha contra estafas y toxicidad en internet**.  
-    Únete y aprende con nosotros. 🚀
-  </p>
+<img src="https://hackpurgatory.es/data/logo.png" width="140px" alt="Hack Purgatory Logo">
 
-  ---
-</div>
-
-## 🌐 Sobre Nosotros
-🔹 **Objetivo Principal**  
-Hacer libre todo el conocimiento posible de internet y luchar contra organizaciones que promuevan ilegalidad, ventas ilegales, toxicidad o estafas.  
-
-🔹 **Recursos Libres**  
-Creemos en el conocimiento libre. Todo lo que compartimos es **gratuito y abierto**.  
-
-🔹 **Nuestra Filosofía**  
-El **aceleracionismo**: acelerar el cambio hacia un internet más limpio, sin estafadores ni grupos tóxicos.  
+# ⚡ 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ ⚡  
+**La comunidad libre de ciberseguridad, aprendizaje y lucha contra la toxicidad en internet.**
 
 ---
 
-## 📖 Información
-Nuestra comunidad se dedica únicamente a la **investigación**, el **aprendizaje libre** y la **lucha contra estafas**.  
-❌ No promovemos actividades ilegales ni lucrativas.  
-✅ Buscamos un internet más **seguro, ético y colaborativo**.  
+🔒 *Ciberseguridad* | 🎓 *Conocimiento libre* | ⚔️ *Anti-estafas*  
+
+---
+
+</div>
+
+## 🧠 ¿Quiénes Somos?
+Bienvenido a **𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™**, una comunidad creada por **RIP Network**, dedicada a:  
+
+- 🌐 **Hacer libre el conocimiento** y compartir lo que otros esconden o venden.  
+- 🛡️ **Luchar contra estafadores**, webs falsas y grupos tóxicos.  
+- 🚀 **Educar en ciberseguridad** con recursos gratuitos para todos.  
+
+> 💡 Nuestro lema: **Aprende sin miedo, comparte sin límites.**
+
+---
+
+## 🔥 Filosofía
+> "El aceleracionismo es nuestra arma: acelerar el cambio hacia un internet más limpio y seguro."
+
+- ⚡ Cerramos grupos de estafas.  
+- 🧩 Eliminamos webs fraudulentas.  
+- 🕵️ Exponemos personas y redes ilegales.  
+- 🎓 Compartimos materiales y cursos libres.  
 
 ---
 
 ## 📡 Canales Oficiales
-Únete a nuestros canales y conecta con la comunidad:  
+Conéctate con nosotros en nuestras plataformas principales:  
 
-[![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/HackPurgatory)  
+[![Telegram](https://img.shields.io/badge/Telegram-00AFF0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/HackPurgatory)  
 [![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/xhKHkCW3YG)  
 
 ---
 
-## 📱 Nuestras Aplicaciones
-Aplicaciones oficiales para mejorar y protegerte (todas **gratuitas**).  
+## 📱 Aplicaciones
+Nuestras herramientas oficiales (100% **gratuitas y libres**):  
 
-- 🔒 **VPN basada en WireGuard** (Próximamente)  
-  > Protege tu privacidad, cifra tus datos y mantén tu conexión estable.  
+- 🔒 **VPN basada en WireGuard** → Próximamente.  
+- 🛠️ Más apps en camino...  
 
 ---
 
-## 📊 Estadísticas
-| 🚫 Grupos Cerrados | 👥 Personas Expuestas | 🌐 Webs Eliminadas |
-|-------------------|----------------------|-------------------|
-| **61**            | **22**               | **19**            |
+## 📊 Estadísticas de la Comunidad
+```
+███████████████████████████████████████████
+📌 61 Grupos Cerrados  
+📌 22 Estafadores Expuestos  
+📌 19 Webs Eliminadas  
+███████████████████████████████████████████
+```
+
+---
+
+## 🌟 Contribuye
+Si quieres aportar, únete a nuestra comunidad:  
+- 📢 Comparte información útil.  
+- 🔎 Reporta estafas o webs maliciosas.  
+- 🤝 Ayuda a otros miembros.  
 
 ---
 
 <div align="center">
-  
-🛡️ &copy; 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ 2025  
-**Todos los derechos reservados.**
+
+⚡ **𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™** ⚡  
+🛡️ *Por un internet más libre, seguro y ético.*  
+
+© 2025 — Todos los derechos reservados.
 
 </div>
