@@ -20,12 +20,12 @@ Bienvenido a **𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™**, una
 - 🛡️ **Luchar contra estafadores**, webs falsas y grupos tóxicos.  
 - 🚀 **Educar en ciberseguridad** con recursos gratuitos para todos.  
 
-> 💡 Nuestro lema: **Aprende sin miedo, comparte sin límites.**
+> 💡 Nuestro Objetivo: **Aprende sin miedo, comparte sin límites.**
 
 ---
 
 ## 🔥 Filosofía
-> "El aceleracionismo es nuestra arma: acelerar el cambio hacia un internet más limpio y seguro."
+> "El aceleracionismo es nuestra arma, acelerar el cambio hacia un internet más limpio y seguro."
 
 - ⚡ Cerramos grupos de estafas.  
 - 🧩 Eliminamos webs fraudulentas.  
@@ -52,11 +52,9 @@ Nuestras herramientas oficiales (100% **gratuitas y libres**):
 
 ## 📊 Estadísticas de la Comunidad
 ```
-███████████████████████████████████████████
 📌 61 Grupos Cerrados  
 📌 22 Estafadores Expuestos  
 📌 19 Webs Eliminadas  
-███████████████████████████████████████████
 ```
 
 ---
