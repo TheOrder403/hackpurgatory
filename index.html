@@ -175,129 +175,6 @@
     </div>
   </section>
 
-  <section id="tool-audio" style="max-width:720px;margin:2rem auto;padding:1.5rem;border-radius:12px;background:#000000;color:#e6eef8;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;box-shadow:0 0 15px rgba(0,0,0,.5);">
-  <h2 style="margin:0 0 .5rem;font-size:1.35rem;border-bottom:1px solid #444;padding-bottom:.25rem;">TikTok MP3 Download</h2>
-  <p style="margin:0 0 1rem;line-height:1.4;">
-    Pega la URL del vídeo y pulsa <strong>Generar enlace</strong> para obtener el enlace directo al audio:
-    <code style="display:inline-block;background:#111;color:#9fd1ff;padding:.15rem .4rem;border-radius:6px;font-size:.9rem;">
-      
-    </code>
-  </p>
-
-  <label for="audioUrl" style="display:block;margin-bottom:.35rem;font-weight:600;font-size:.95rem;">URL del vídeo</label>
-  <div style="display:flex;gap:.5rem;align-items:center;">
-    <input id="audioUrl" type="url" placeholder="https://www.tiktok.com/..." 
-           style="flex:1;padding:.5rem .6rem;border-radius:8px;border:1px solid #333;background:#111;color:#fff;outline:none;"/>
-    <button id="buildAudioBtn" type="button" style="padding:.5rem .75rem;border-radius:8px;border:none;background:#000;color:#fff;cursor:pointer;font-weight:700;">
-      Generar enlace
-    </button>
-  </div>
-
-  <div id="audioResultBox" style="margin-top:1rem;display:none;gap:.5rem;flex-direction:column;">
-    <label style="font-weight:600;font-size:.95rem;margin-bottom:.25rem;">Enlace generado</label>
-    <div style="display:flex;gap:.5rem;align-items:center;">
-      <input id="audioFinalLink" readonly style="flex:1;padding:.45rem .6rem;border-radius:8px;border:1px solid #333;background:#111;color:#9fd1ff;font-size:.95rem;" />
-      <a id="audioOpenLink" href="#" target="_blank" rel="noopener noreferrer" style="padding:.45rem .6rem;border-radius:8px;text-decoration:none;background:#000;color:#fff;font-weight:700;display:inline-flex;align-items:center;">
-        Abrir / Descargar
-      </a>
-      <button id="audioCopyBtn" type="button" style="padding:.45rem .6rem;border-radius:8px;border:none;background:#000;color:#fff;font-weight:700;cursor:pointer;">
-        Copiar
-      </button>
-    </div>
-    <small style="opacity:.7;margin-top:.5rem;display:block;">Este formulario solo concatena y codifica la URL.</small>
-  </div>
-</section>
-
-<section id="tool-video" style="max-width:720px;margin:2rem auto;padding:1.5rem;border-radius:12px;background:#000000;color:#e6eef8;font-family:system-ui,Segoe UI,Roboto,Arial,sans-serif;box-shadow:0 0 15px rgba(0,0,0,.5);">
-  <h2 style="margin:0 0 .5rem;font-size:1.35rem;border-bottom:1px solid #444;padding-bottom:.25rem;">TikTok MP4 Download</h2>
-  <p style="margin:0 0 1rem;line-height:1.4;">
-    Pega la URL del vídeo y pulsa <strong>Generar enlace</strong> para obtener el enlace directo al video:
-    <code style="display:inline-block;background:#111;color:#9fd1ff;padding:.15rem .4rem;border-radius:6px;font-size:.9rem;">
-      
-    </code>
-  </p>
-
-  <label for="videoUrl" style="display:block;margin-bottom:.35rem;font-weight:600;font-size:.95rem;">URL del vídeo</label>
-  <div style="display:flex;gap:.5rem;align-items:center;">
-    <input id="videoUrl" type="url" placeholder="https://www.tiktok.com/..." 
-           style="flex:1;padding:.5rem .6rem;border-radius:8px;border:1px solid #333;background:#111;color:#fff;outline:none;"/>
-    <button id="buildVideoBtn" type="button" style="padding:.5rem .75rem;border-radius:8px;border:none;background:#000;color:#fff;cursor:pointer;font-weight:700;">
-      Generar enlace
-    </button>
-  </div>
-
-  <div id="videoResultBox" style="margin-top:1rem;display:none;gap:.5rem;flex-direction:column;">
-    <label style="font-weight:600;font-size:.95rem;margin-bottom:.25rem;">Enlace generado</label>
-    <div style="display:flex;gap:.5rem;align-items:center;">
-      <input id="videoFinalLink" readonly style="flex:1;padding:.45rem .6rem;border-radius:8px;border:1px solid #333;background:#111;color:#9fd1ff;font-size:.95rem;" />
-      <a id="videoOpenLink" href="#" target="_blank" rel="noopener noreferrer" style="padding:.45rem .6rem;border-radius:8px;text-decoration:none;background:#000;color:#fff;font-weight:700;display:inline-flex;align-items:center;">
-        Abrir / Descargar
-      </a>
-      <button id="videoCopyBtn" type="button" style="padding:.45rem .6rem;border-radius:8px;border:none;background:#000;color:#fff;font-weight:700;cursor:pointer;">
-        Copiar
-      </button>
-    </div>
-    <small style="opacity:.7;margin-top:.5rem;display:block;">Este formulario solo concatena y codifica la URL.</small>
-  </div>
-</section>
-
-<script>
-(function(){
-  function setupTool(inputId, buildBtnId, resultBoxId, finalLinkId, openLinkId, copyBtnId, baseUrl) {
-    const input = document.getElementById(inputId);
-    const buildBtn = document.getElementById(buildBtnId);
-    const resultBox = document.getElementById(resultBoxId);
-    const finalLinkInput = document.getElementById(finalLinkId);
-    const openLink = document.getElementById(openLinkId);
-    const copyBtn = document.getElementById(copyBtnId);
-
-    function sanitizeAndEncode(raw) {
-      return encodeURIComponent((raw || '').trim());
-    }
-
-    buildBtn.addEventListener('click', () => {
-      const val = input.value;
-      if (!val || val.trim() === '') {
-        alert('Por favor pega la URL del vídeo.');
-        input.focus();
-        return;
-      }
-      const encoded = sanitizeAndEncode(val);
-      const final = baseUrl + encoded;
-
-      finalLinkInput.value = final;
-      openLink.href = final;
-      resultBox.style.display = 'flex';
-    });
-
-    copyBtn.addEventListener('click', async () => {
-      const text = finalLinkInput.value;
-      if (!text) return;
-      try {
-        await navigator.clipboard.writeText(text);
-        copyBtn.textContent = 'Copiado ✓';
-        setTimeout(()=> copyBtn.textContent = 'Copiar', 1500);
-      } catch (e) {
-        finalLinkInput.select();
-        document.execCommand('copy');
-        copyBtn.textContent = 'Copiado ✓';
-        setTimeout(()=> copyBtn.textContent = 'Copiar', 1500);
-      }
-    });
-
-    input.addEventListener('keydown', (ev) => {
-      if (ev.key === 'Enter') {
-        ev.preventDefault();
-        buildBtn.click();
-      }
-    });
-  }
-
-  setupTool('audioUrl', 'buildAudioBtn', 'audioResultBox', 'audioFinalLink', 'audioOpenLink', 'audioCopyBtn', 'https://downloader-pro.cgd-priv.uk/api/tiktok/download/audio?url=');
-  setupTool('videoUrl', 'buildVideoBtn', 'videoResultBox', 'videoFinalLink', 'videoOpenLink', 'videoCopyBtn', 'https://downloader-pro.cgd-priv.uk/api/tiktok/download/video?url=');
-})();
-</script>
-
   <section id="apps">
     <h2>Reporta Actividad Sospechosa</h2>
     <p>Aqui podras reportar cualquier tipo de actividad sospechosa para que La Unidad de la comunidad pueda interactuar y decidir, La Unidad es un subgrupo de la comunidad dedicado a luchar contra estafas y scams entre otras cosas para poder crear un internet mas seguro y limpio. Para enviar el reporte se necesita que hagas un texto explicando por que y sus razonamientos.</p>
@@ -308,9 +185,9 @@
   </section>
 
   <div class="stats" id="stats">
-    <div class="stat"><h3 class="counter" data-target="84">0</h3><p>Grupos/Canales Cerrados</p></div>
-    <div class="stat"><h3 class="counter" data-target="39">0</h3><p>Personas Expuestas</p></div>
-    <div class="stat"><h3 class="counter" data-target="34">0</h3><p>Webs Eliminadas</p></div>
+    <div class="stat"><h3 class="counter" data-target="92">0</h3><p>Grupos/Canales Cerrados</p></div>
+    <div class="stat"><h3 class="counter" data-target="48">0</h3><p>Personas Expuestas</p></div>
+    <div class="stat"><h3 class="counter" data-target="39">0</h3><p>Webs Eliminadas</p></div>
   </div>
 
 
@@ -357,6 +234,7 @@
 </script>
 </body>
 </html>
+
 
 
 
