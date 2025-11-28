@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegionNova - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</title>
+    <meta name="description" content="Exposición - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.es/data/logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: #000;
+        }
+        
+        header {
+            background-color: rgba(0,0,0,0.5);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #fff;
+            justify-content: space-between;
+            position: relative;
+        }
+        
+        header img {
+            max-width: 80px;
+        }
+        
+        .header-text {
+            flex: 1 1 200px;
+        }
+        
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+        }
+        
+        header p {
+            font-size: 1rem;
+            color: #ddd;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+        
+        nav {
+            background-color: rgba(0,0,0,0.5);
+            position: relative;
+        }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 1rem;
+            z-index: 1000;
+        }
+        
+        .menu-toggle div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+        
+        .menu-toggle.active div:nth-child(1) {
+            transform: rotate(45deg) translate(5px,5px);
+        }
+        
+        .menu-toggle.active div:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px,-5px);
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            transition: max-height 0.3s;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 1rem;
+            display: block;
+            transition: color 0.3s, background 0.3s, transform 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: #fff;
+            color: #000;
+            border-radius: 5px;
+            transform: translateY(-2px);
+        }
+        
+        main {
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: 3rem auto;
+            background-color: rgba(0,0,0,0.65);
+            border-radius: 15px;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+        }
+        
+        section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #ff3333;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            color: #ff3333;
+        }
+        
+        .expose-article {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: left;
+            padding: 2rem;
+        }
+        
+        .target-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 3px solid #ff3333;
+            margin-bottom: 2rem;
+            object-fit: cover;
+        }
+        
+        .target-title {
+            font-size: 2.5rem;
+            color: #ff3333;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px rgba(255,51,51,0.5);
+            text-align: center;
+        }
+        
+        .expose-content {
+            background-color: rgba(255,255,255,0.1);
+            padding: 2rem;
+            border: 1px solid #ff3333;
+            border-radius: 10px;
+            max-width: 1000px;
+            line-height: 1.8;
+        }
+        
+        .expose-content p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .expose-content h3 {
+            color: #ff3333;
+            margin: 2rem 0 1rem 0;
+            font-size: 1.4rem;
+        }
+        
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .data-card {
+            background: rgba(255,51,51,0.1);
+            border: 1px solid #ff3333;
+            border-radius: 8px;
+            padding: 1.2rem;
+        }
+        
+        .data-card h4 {
+            color: #ff3333;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+        }
+        
+        .data-card p {
+            margin-bottom: 0.5rem;
+            font-size: 0.95rem;
+        }
+        
+        .social-link {
+            color: #00ffcc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .social-link:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+        
+        .evidence-section {
+            margin: 2.5rem 0;
+            padding: 1.5rem;
+            background: rgba(255,51,51,0.05);
+            border-left: 4px solid #ff3333;
+        }
+        
+        .evidence-section h3 {
+            color: #ff3333;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-buttons {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        .contact-buttons a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #111;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #ff3333;
+        }
+        
+        .contact-buttons a:hover {
+            background-color: #ff3333;
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255,51,51,0.5);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            border-top: 1px solid #fff;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        .warning-banner {
+            background: rgba(255,51,51,0.2);
+            border: 1px solid #ff3333;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        
+        .json-data {
+            background: rgba(0,0,0,0.7);
+            border: 1px solid #00ffcc;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            font-family: monospace;
+            font-size: 0.9rem;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+        
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                max-height: 0;
+                overflow: hidden;
+            }
+            
+            nav ul.show {
+                max-height: 500px;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+            }
+            
+            header {
+                justify-content: center;
+                text-align: center;
+            }
+            
+            header h1 {
+                font-size: 1.6rem;
+            }
+            
+            section h2 {
+                font-size: 1.5rem;
+            }
+            
+            .target-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .target-title {
+                font-size: 2rem;
+            }
+            
+            .data-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="https://hackpurgatory.es/data/logo.png" alt="Logo de la Comunidad">
+    <div class="header-text">
+        <h1>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</h1>
+        <p>Exposición</p>
+    </div>
+</header>
+
+<nav>
+    <div class="menu-toggle" id="menu-toggle">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <ul id="menu">
+        <li><a href="https://hackpurgatory.es">Site Home</a></li>
+	<li><a href="#About">Sobre Nosotros</a></li>
+	 <li><a href="#Info">Información</a></li>
+  	  <li><a href="#contact">Canales</a></li>
+  	  <li><a href="#apps">Reportar</a></li>
+  	  <li><a href="#tool">Free RDP/VPS</a></li>
+  	  <li><a href="#stats">Estadisticas</a></li>
+  	  <li><a href="https://hackpurgatory.es/Channel/messages.html">Recursos</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section id="expose">
+        <h2>Estafador</h2>
+        <div class="expose-article">
+            <img src="https://hackpurgatory.es/data/logo.png" alt="Imagen de LegionNova" class="target-image">
+            <h3 class="target-title">Benjamín Campos(LegionNova)</h3>
+            
+            <div class="warning-banner">
+                <strong>ADVERTENCIA:</strong> Identificado como Estafador.
+            </div>
+            
+            <div class="expose-content">
+                <h3>Información Personal</h3>
+                <div class="data-grid">
+                    <div class="data-card">
+                        <h4>Información Básica</h4>
+                        <p><strong>Nombre Real:</strong> Benjamín Campos</p>
+                        <p><strong>Alias:</strong> LegionNova</p>
+                        <p><strong>Número 1:</strong> +50375521865</p>
+                        <p><strong>Número 2:</strong> +50375234446</p>
+                        <p><strong>Correo:</strong> benjuals5@gmail.com</p>
+                        <p><strong>Ubicación:</strong> Apopa, El Salvador</p>
+                        <p><strong>Operador:</strong> Telemovil El Salvador</p>
+                    </div>
+                    
+                    <div class="data-card">
+                        <h4>Cuentas Principales</h4>
+                        <p><strong>Eyecon:</strong> Gnosis Oración</p>
+                        <p><strong>Microsoft:</strong> Nova El Ser Supremo</p>
+                        <p><strong>Google Play Games:</strong> HelpfulWhale46683</p>
+                        <p><strong>Ubicación GPS:</strong> 13.8015705, -89.1632809</p>
+                        <p><strong>IMEI:</strong> 354806760454068</p>
+                    </div>
+                    
+                    <div class="data-card">
+                        <h4>Redes Sociales</h4>
+                        <p><strong>Facebook:</strong> J... W... (p*******5@gmail.com)</p>
+                        <p><strong>Facebook:</strong> K... P... (p******3@gmail.com)</p>
+                        <p><strong>Facebook:</strong> E... B...</p>
+                        <p><strong>Facebook:</strong> E... F...</p>
+                        <p><strong>Snapchat:</strong> Registrado</p>
+                        <p><strong>Twitter:</strong> Registrado</p>
+                        <p><strong>Tumblr:</strong> Registrado</p>
+                        <p><strong>Pinterest:</strong> Registrado</p>
+                    </div>
+                </div>
+
+                <div class="data-grid">
+                    <div class="data-card">
+                        <h4>Comunicación</h4>
+                        <p><strong>WhatsApp:</strong> Registrado</p>
+                        <p><strong>Cuenta Business:</strong> No</p>
+                        <p><strong>Line:</strong> No especificado</p>
+                    </div>
+                    
+                    <div class="data-card">
+                        <h4>Tecnología y Software</h4>
+                        <p><strong>Microsoft:</strong> Registrado (con contraseña)</p>
+                        <p><strong>Adobe:</strong> Cuenta Individual Activa</p>
+                        <p><strong>Grammarly:</strong> Registrado</p>
+                        <p><strong>Nvidia:</strong> Registrado</p>
+                        <p><strong>Samsung:</strong> Registrado</p>
+                    </div>
+                    
+                    <div class="data-card">
+                        <h4>Entretenimiento</h4>
+                        <p><strong>Spotify:</strong> Registrado</p>
+                        <p><strong>Picsart:</strong> Registrado</p>
+                        <p><strong>Pokemon.com:</strong> Registrado</p>
+                        <p><strong>Google Play Games:</strong> Registrado</p>
+                    </div>
+                </div>
+                
+                <div class="data-grid">
+                    <div class="data-card">
+                        <h4>Google Play Games - Detalles</h4>
+                        <p><strong>ID:</strong> g07126143559803053528</p>
+                        <p><strong>Username:</strong> HelpfulWhale46683</p>
+                        <p><strong>Nombre:</strong> HelpfulWhale46683</p>
+                        <p><strong>Bio:</strong> General</p>
+                        <p><strong>Nivel:</strong> 14</p>
+                        <p><strong>Último juego:</strong> Clash of Clans</p>
+                        <p><strong>Última conexión:</strong> 2025-05-19</p>
+                    </div>
+                    
+                    <div class="data-card">
+                        <h4>Adobe - Detalles</h4>
+                        <p><strong>Tipo de cuenta:</strong> Individual</p>
+                        <p><strong>Estado:</strong> Activa</p>
+                        <p><strong>Proveedores de autenticación:</strong> Facebook, Google</p>
+                    </div>
+                    
+                    <div class="data-card">
+                        <h4>Ubicación - Detalles</h4>
+                        <p><strong>Coordenadas:</strong> 13.8015705, -89.1632809</p>
+                        <p><strong>Enlace Maps:</strong> maps.app.goo.gl/83REci6pTmzAtBYh8</p>
+                        <p><strong>País:</strong> El Salvador</p>
+                        <p><strong>Ciudad:</strong> Apopa</p>
+                        <p><strong>Zona horaria:</strong> -06:00</p>
+                    </div>
+                </div>
+                
+                <div class="json-data">
+{
+  "target": {
+    "real_name": "Benjamín",
+    "alias": "LegionNova",
+    "phone_numbers": [
+      "+50375521865",
+      "+50375234446"
+    ],
+    "email": "benjuals5@gmail.com",
+    "location": {
+      "country": "El Salvador",
+      "city": "Apopa",
+      "coordinates": "13.8015705, -89.1632809",
+      "maps_link": "maps.app.goo.gl/83REci6pTmzAtBYh8",
+      "timezone": "-06:00"
+    },
+    "carrier": "Telemovil El Salvador",
+    "imei": "354806760454068"
+  },
+  "platforms": {
+    "eyecon": {
+      "username": "Gnosis Oración",
+      "registered": true
+    },
+    "microsoft": {
+      "username": "Nova El Ser Supremo",
+      "registered": true,
+      "has_password_login": true
+    },
+    "facebook": [
+      {
+        "name": "J... W...",
+        "email_hint": "p*******5@gmail.com",
+        "registered": true
+      },
+      {
+        "name": "K... P...",
+        "email_hint": "p******3@gmail.com",
+        "registered": true
+      },
+      {
+        "name": "E... B...",
+        "registered": true
+      },
+      {
+        "name": "E... F...",
+        "registered": true
+      }
+    ],
+    "whatsapp": {
+      "registered": true,
+      "is_business": false
+    },
+    "snapchat": {
+      "registered": true
+    },
+    "pinterest": {
+      "registered": true
+    },
+    "picsart": {
+      "registered": true
+    },
+    "grammarly": {
+      "registered": true
+    },
+    "twitter": {
+      "registered": true
+    },
+    "pokemon_com": {
+      "registered": true
+    },
+    "tumblr": {
+      "registered": true
+    },
+    "spotify": {
+      "registered": true
+    },
+    "adobe": {
+      "registered": true,
+      "account_type": "Individual",
+      "status": "Active",
+      "authentication_providers": ["Facebook", "Google"]
+    },
+    "nvidia": {
+      "registered": true
+    },
+    "google_play_games": {
+      "id": "g07126143559803053528",
+      "username": "HelpfulWhale46683",
+      "name": "HelpfulWhale46683",
+      "bio": "General",
+      "level": 14,
+      "last_game": "Clash of Clans",
+      "last_connection": "2025-05-19",
+      "registered": true
+    },
+    "samsung": {
+      "registered": true
+    }
+  },
+}
+                </div>
+                
+                <div class="warning-banner">
+                    <strong>INFORMACIÓN RECOPILADA POR:</strong> OhMyData 3.8 - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™
+                </div>
+            </div>
+            
+            <div class="contact-buttons">
+                <a href="https://hackpurgatory.es">Volver al Inicio</a>
+                <a href="https://t.me/HackPurgatory" target="_blank">Reportar a La Unidad</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    &copy; 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ 2025. Todos los derechos reservados.
+</footer>
+
+<script>
+  
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+    toggle.addEventListener('click', () => {
+        menu.classList.toggle('show');
+        toggle.classList.toggle('active');
+    });
+</script>
+
+</body>
+</html>
