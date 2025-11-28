@@ -40,24 +40,6 @@ Conéctate con nosotros en nuestras plataformas principales:
 [![Telegram](https://img.shields.io/badge/Telegram-00AFF0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/HackPurgatory)  
 [![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/xhKHkCW3YG)  
 
----
-
-## 📱 Aplicaciones
-Nuestras herramientas oficiales (100% **gratuitas y libres**):  
-
-- 🔒 **VPN basada en WireGuard** → Próximamente.  
-- 🛠️ Más apps en camino...  
-
----
-
-## 📊 Estadísticas de la Comunidad
-```
-📌 61 Grupos Cerrados  
-📌 22 Estafadores Expuestos  
-📌 19 Webs Eliminadas  
-```
-
----
 
 ## 🌟 Contribuye
 Si quieres aportar, únete a nuestra comunidad:  
