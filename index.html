@@ -105,6 +105,31 @@
   .chatbot-header {background:#000; color:#fff; padding:10px; text-align:center; font-weight:bold; cursor:pointer;}
   .chatbot-iframe {flex:1; border:none; width:100%; height:100%;}
   .chatbot-toggle {position:fixed; bottom:20px; right:20px; background:#000; color:#fff; border:none; border-radius:50%; width:60px; height:60px; font-size:24px; cursor:pointer; z-index:10000;}
+
+  /* GALERÍA HORIZONTAL - NUEVO */
+  .gallery-section {margin: 4rem 0; padding: 2rem 0;}
+  .gallery-title {text-align: center; font-size: 2rem; margin-bottom: 2rem; color: #00ffcc; text-shadow: 0 0 10px rgba(0,255,204,0.5);}
+  .gallery-container {position: relative; width: 100%; overflow: hidden; padding: 1rem 0;}
+  .gallery-scroll {display: flex; gap: 1.5rem; animation: scrollHorizontal 30s linear infinite; padding: 1rem;}
+  .gallery-scroll:hover {animation-play-state: paused;}
+  .gallery-item {flex: 0 0 auto; width: 300px; height: 200px; border-radius: 10px; overflow: hidden; border: 2px solid #00ffcc; box-shadow: 0 5px 15px rgba(0,255,204,0.3); transition: transform 0.3s;}
+  .gallery-item:hover {transform: scale(1.05); border-color: #fff;}
+  .gallery-item img {width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s;}
+  .gallery-item:hover img {transform: scale(1.1);}
+  @keyframes scrollHorizontal {
+    0% {transform: translateX(0);}
+    100% {transform: translateX(calc(-300px * 6 - 1.5rem * 6));}
+  }
+  .gallery-controls {text-align: center; margin-top: 1.5rem;}
+  .gallery-btn {background: rgba(0,0,0,0.7); border: 2px solid #00ffcc; color: #00ffcc; padding: 0.5rem 1.5rem; margin: 0 0.5rem; border-radius: 25px; cursor: pointer; transition: all 0.3s;}
+  .gallery-btn:hover {background: #00ffcc; color: #000;}
+  @media(max-width:768px){
+    .gallery-item {width: 250px; height: 170px;}
+    @keyframes scrollHorizontal {
+      0% {transform: translateX(0);}
+      100% {transform: translateX(calc(-250px * 6 - 1.5rem * 6));}
+    }
+  }
 </style>
 </head>
 <body>
@@ -150,6 +175,53 @@
       <div class="feature"><h3>Nuestra Filosofía</h3><p>Somos una comunidad firme y con reglas para que podamos tener un orden dentro de nosotros. El aceleracionismo es nuestra filosofía: creemos que debemos acelerar todo para que internet pueda encontrar una nueva era que prospere correctamente sin ningún tipo estafa o toxicidad. En esa misión hemos cerrado grupos, canales y comunidades dedicadas a promover y expandir estafas. Somos una comunidad ética sin ningún tipo lucro con el único objetivo de crear un internet más limpio. La Unidad, un grupo dedicado a la limpieza de estafadores y tóxicos, se ocupa de tareas como esas para poder eliminar cualquier tipo de mala conducta.</p></div>
     </div>
   </section>
+
+
+  <div class="gallery-section">
+    <h2 class="gallery-title">Galería de la Comunidad</h2>
+    <div class="gallery-container">
+      <div class="gallery-scroll" id="gallery-scroll">
+        <!-- Imágenes se duplican para efecto infinito -->
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Ciberseguridad">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Tecnología">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Redes">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1548092372-0d1bd40894a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Codificación">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Hacking Ético">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Comunidad">
+        </div>
+        <!-- Duplicados para efecto continuo -->
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Ciberseguridad">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Tecnología">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Redes">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1548092372-0d1bd40894a3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Codificación">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Hacking Ético">
+        </div>
+        <div class="gallery-item">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Comunidad">
+        </div>
+      </div>
+    </div>
+  </div>
 
   <section id="Info">
     <h2>Información</h2>
@@ -232,23 +304,38 @@
   [guestAvatar,guestName].forEach(el=>el.addEventListener('click',()=>{guestMenu.style.display=guestMenu.style.display==='block'?'none':'block';}));
   window.addEventListener('click',function(e){if(!guestAvatar.contains(e.target)&&!guestName.contains(e.target)&&!guestMenu.contains(e.target)){guestMenu.style.display='none';}});
 
+ 
+  let galleryPaused = false;
+  let galleryDirection = 'right';
+  const galleryScroll = document.getElementById('gallery-scroll');
+  
+  function pauseGallery() {
+    galleryScroll.style.animationPlayState = 'paused';
+    galleryPaused = true;
+  }
+  
+  function resumeGallery() {
+    galleryScroll.style.animationPlayState = 'running';
+    galleryPaused = false;
+  }
+  
+  function changeDirection() {
+    if (galleryDirection === 'right') {
+      galleryScroll.style.animationDirection = 'reverse';
+      galleryDirection = 'left';
+    } else {
+      galleryScroll.style.animationDirection = 'normal';
+      galleryDirection = 'right';
+    }
+    if (!galleryPaused) resumeGallery();
+  }
+  
+  
+  galleryScroll.addEventListener('mouseenter', pauseGallery);
+  galleryScroll.addEventListener('mouseleave', function() {
+    if (!galleryPaused) resumeGallery();
+  });
+
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
