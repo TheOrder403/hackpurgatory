@@ -2,39 +2,39 @@
 
 <img src="https://hackpurgatory.es/data/logo.png" width="140px" alt="Hack Purgatory Logo">
 
-# ⚡ 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ ⚡  
+#  𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™   
 **La comunidad libre de ciberseguridad, aprendizaje y lucha contra la toxicidad en internet.**
 
 ---
 
-🔒 *Ciberseguridad* | 🎓 *Conocimiento libre* | ⚔️ *Anti-estafas*  
+ *Ciberseguridad* |  *Conocimiento libre* |  *Anti-estafas*  
 
 ---
 
 </div>
 
-## 🧠 ¿Quiénes Somos?
+##  ¿Quiénes Somos?
 Bienvenido a **𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™**, una comunidad creada por **RIP Network**, dedicada a:  
 
-- 🌐 **Hacer libre el conocimiento** y compartir lo que otros esconden o venden.  
-- 🛡️ **Luchar contra estafadores**, webs falsas y grupos tóxicos.  
-- 🚀 **Educar en ciberseguridad** con recursos gratuitos para todos.  
+-  **Hacer libre el conocimiento** y compartir lo que otros esconden o venden.  
+-  **Luchar contra estafadores**, webs falsas y grupos tóxicos.  
+-  **Educar en ciberseguridad** con recursos gratuitos para todos.  
 
-> 💡 Nuestro Objetivo: **Aprende sin miedo, comparte sin límites.**
+>  Nuestro Objetivo: **Aprende sin miedo, comparte sin límites.**
 
 ---
 
-## 🔥 Filosofía
+##  Filosofía
 > "El aceleracionismo es nuestra arma, acelerar el cambio hacia un internet más limpio y seguro."
 
-- ⚡ Cerramos grupos de estafas.  
-- 🧩 Eliminamos webs fraudulentas.  
-- 🕵️ Exponemos personas y redes ilegales.  
-- 🎓 Compartimos materiales y cursos libres.  
+-  Cerramos grupos de estafas.  
+-  Eliminamos webs fraudulentas.  
+-  Exponemos personas y redes ilegales.  
+-  Compartimos materiales y cursos libres.  
 
 ---
 
-## 📡 Canales Oficiales
+##  Canales Oficiales
 Conéctate con nosotros en nuestras plataformas principales:  
 
 [![Telegram](https://img.shields.io/badge/Telegram-00AFF0?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/HackPurgatory)  
