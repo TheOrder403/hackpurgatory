@@ -41,11 +41,11 @@ Conéctate con nosotros en nuestras plataformas principales:
 [![Discord](https://img.shields.io/badge/Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/xhKHkCW3YG)  
 
 
-## 🌟 Contribuye
+##  Contribuye
 Si quieres aportar, únete a nuestra comunidad:  
-- 📢 Comparte información útil.  
-- 🔎 Reporta estafas o webs maliciosas.  
-- 🤝 Ayuda a otros miembros.  
+-  Comparte información útil.  
+-  Reporta estafas o webs maliciosas.  
+-  Ayuda a otros miembros.  
 
 ---
 
