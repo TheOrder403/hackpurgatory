@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ - Exposed Links</title>
+    <meta name="description" content="Exposed People Links - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.es/data/logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: #000;
+        }
+        
+        header {
+            background-color: rgba(0,0,0,0.5);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #fff;
+            justify-content: space-between;
+            position: relative;
+        }
+        
+        header img {
+            max-width: 80px;
+        }
+        
+        .header-text {
+            flex: 1 1 200px;
+        }
+        
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+        }
+        
+        header p {
+            font-size: 1rem;
+            color: #ddd;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+        
+        nav {
+            background-color: rgba(0,0,0,0.5);
+            position: relative;
+        }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 1rem;
+            z-index: 1000;
+        }
+        
+        .menu-toggle div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+        
+        .menu-toggle.active div:nth-child(1) {
+            transform: rotate(45deg) translate(5px,5px);
+        }
+        
+        .menu-toggle.active div:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px,-5px);
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            transition: max-height 0.3s;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 1rem;
+            display: block;
+            transition: color 0.3s, background 0.3s, transform 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: #fff;
+            color: #000;
+            border-radius: 5px;
+            transform: translateY(-2px);
+        }
+        
+        main {
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: 3rem auto;
+            background-color: rgba(0,0,0,0.65);
+            border-radius: 15px;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+        }
+        
+        section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #ff3333;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            color: #ff3333;
+        }
+        
+        .exposed-people-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(255,51,51,0.1);
+            border: 1px solid #ff3333;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .exposed-people-section h3 {
+            color: #ff3333;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-shadow: 0 0 10px rgba(255,51,51,0.3);
+        }
+        
+        .exposed-people-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+        
+        .exposed-person-btn {
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(135deg, #ff3333, #990000);
+            padding: 1rem 1.8rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 2px solid #ff3333;
+            min-width: 250px;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(255,51,51,0.3);
+        }
+        
+        .exposed-person-btn:hover {
+            background: linear-gradient(135deg, #ff6666, #cc0000);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(255,51,51,0.5);
+            color: #000;
+        }
+        
+        .exposed-person-btn .person-name {
+            font-size: 1.2rem;
+            margin-bottom: 0.3rem;
+            display: block;
+        }
+        
+        .exposed-person-btn .person-alias {
+            font-size: 0.9rem;
+            color: #ddd;
+            font-style: italic;
+        }
+        
+        .contact-buttons {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        .contact-buttons a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #111;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #ff3333;
+        }
+        
+        .contact-buttons a:hover {
+            background-color: #ff3333;
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255,51,51,0.5);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            border-top: 1px solid #fff;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        .warning-banner {
+            background: rgba(255,51,51,0.2);
+            border: 1px solid #ff3333;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            
+            html, body {
+                overflow-x: hidden;
+                width: 100%;
+                position: relative;
+            }
+            
+           
+            main {
+                padding: 1rem;
+                margin: 1rem auto;
+                width: calc(100% - 1rem);
+                max-width: 100%;
+                overflow: hidden;
+            }
+            
+           
+            .menu-toggle {
+                display: flex;
+                position: absolute;
+                right: 15px;
+                top: 15px;
+            }
+            
+            nav {
+                padding-top: 50px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                max-height: 0;
+                overflow: hidden;
+                background-color: rgba(0,0,0,0.95);
+                position: absolute;
+                width: 100%;
+                top: 70px;
+                left: 0;
+                z-index: 999;
+                padding: 0;
+            }
+            
+            nav ul.show {
+                max-height: 500px;
+                padding-bottom: 10px;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                width: 100%;
+            }
+            
+            nav ul li a {
+                padding: 15px 10px;
+                font-size: 1rem;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+           
+            header {
+                justify-content: center;
+                text-align: center;
+                padding: 70px 15px 15px;
+                flex-direction: column;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            header img {
+                max-width: 60px;
+                margin-bottom: 10px;
+            }
+            
+            header h1 {
+                font-size: 1.4rem;
+                margin-bottom: 0.3rem;
+                word-wrap: break-word;
+                padding: 0 10px;
+            }
+            
+            header p {
+                font-size: 0.9rem;
+                padding: 0 10px;
+            }
+            
+           
+            section h2 {
+                font-size: 1.3rem;
+                display: block;
+                text-align: center;
+                margin: 0 auto 1rem;
+                padding: 0 15px;
+                word-wrap: break-word;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            /* Responsive para botones de personas expuestas */
+            .exposed-people-section {
+                padding: 1.5rem;
+                margin: 2rem 0;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .exposed-people-section h3 {
+                font-size: 1.4rem;
+                margin-bottom: 1rem;
+            }
+            
+            .exposed-people-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .exposed-person-btn {
+                min-width: 100%;
+                padding: 0.9rem 1.2rem;
+            }
+            
+            .exposed-person-btn .person-name {
+                font-size: 1.1rem;
+            }
+            
+            .exposed-person-btn .person-alias {
+                font-size: 0.85rem;
+            }
+         
+            .contact-buttons {
+                flex-direction: column;
+                width: 100%;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            
+            .contact-buttons a {
+                width: 100%;
+                text-align: center;
+                padding: 1rem;
+                margin-bottom: 0.5rem;
+                box-sizing: border-box;
+                display: block;
+            }
+            
+         
+            .warning-banner {
+                padding: 0.8rem;
+                margin: 1rem 0;
+                font-size: 0.9rem;
+                width: 100%;
+                box-sizing: border-box;
+                word-wrap: break-word;
+            }
+            
+           
+            .contact-buttons a,
+            nav ul li a,
+            .exposed-person-btn {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                box-sizing: border-box;
+            }
+            
+           
+            * {
+                max-width: 100%;
+            }
+            
+           
+            section {
+                margin-bottom: 2rem;
+                padding: 0 0.5rem;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+        
+       
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.2rem;
+                padding: 0 5px;
+            }
+            
+            .exposed-people-section {
+                padding: 1rem;
+            }
+            
+            .exposed-people-section h3 {
+                font-size: 1.2rem;
+            }
+          
+            p, h1, h2, h3, h4, span, a, div {
+                overflow-wrap: break-word !important;
+                word-wrap: break-word !important;
+                word-break: break-word !important;
+                hyphens: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="https://hackpurgatory.es/data/logo.png" alt="Logo de la Comunidad">
+    <div class="header-text">
+        <h1>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</h1>
+        <p>Bienvenido a Nuestra Comunidad.</p>
+    </div>
+</header>
+
+<nav>
+    <div class="menu-toggle" id="menu-toggle">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <ul id="menu">
+	  <li><a href="https://hackpurgatory.es">Sobre Nosotros</a></li>
+	  <li><a href="https://hackpurgatory.es">Información</a></li>
+  	  <li><a href="https://hackpurgatory.es">Canales</a></li>
+  	  <li><a href="https://t.me/HackPurgatory">Reportar</a></li>
+  	  <li><a href="https://hackpurgatory.es">Free RDP/VPS</a></li>
+  	  <li><a href="https://hackpurgatory.es">Estadisticas</a></li>
+  	  <li><a href="https://hackpurgatory.es/Channel/messages.html">Recursos</a></li>
+	  <li><a href="https://hackpurgatory.es/Exposed/link.txt">Expuestos</a></li>
+    </ul>
+</nav>
+
+<main>
+    <!-- Sección de Personas Expuestas -->
+    <section id="exposed-people">
+        <div class="exposed-people-section">
+            <h3>Exposed People Links</h3>
+            <div class="exposed-people-buttons">
+                <a href="https://hackpurgatory.es/Exposed/mrban01.html" class="exposed-person-btn" target="_blank">
+                    <span class="person-name">Mrban01</span>
+                    <span class="person-alias">Enikop Security</span>
+                </a>
+                <a href="https://hackpurgatory.es/Exposed/LegionNova.html" class="exposed-person-btn" target="_blank">
+                    <span class="person-name">Nova</span>
+                    <span class="person-alias">LegionNova</span>
+                </a>
+                <a href="https://hackpurgatory.es/Exposed/Yextep.html" class="exposed-person-btn" target="_blank">
+                    <span class="person-name">Yextep</span>
+                    <span class="person-alias">Onion_Sempai</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <div class="contact-buttons">
+        <a href="https://hackpurgatory.es">Volver al Inicio</a>
+        <a href="https://t.me/HackPurgatory" target="_blank">Reportar a La Unidad</a>
+    </div>
+</main>
+
+<footer>
+    &copy; 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ 2025. Todos los derechos reservados.
+</footer>
+
+<script>
+  
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+    toggle.addEventListener('click', () => {
+        menu.classList.toggle('show');
+        toggle.classList.toggle('active');
+    });
+</script>
+
+</body>
+</html>
