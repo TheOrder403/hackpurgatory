@@ -43,7 +43,10 @@
   header {background-color: rgba(0,0,0,0.5); padding:1rem 2rem; display:flex; align-items:center; gap:1rem; flex-wrap:wrap; border-bottom:2px solid #fff; justify-content:space-between; position:relative;}
   header img {max-width:80px;}
   .header-text {flex:1 1 200px;}
-  header h1 {font-size:2rem; margin-bottom:0.5rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.7);}
+  header h1 {font-size:2rem; margin-bottom:0.5rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.7); min-height: 2.5rem;}
+  .typing-container {display: inline-block;}
+  .typing-cursor {display: inline-block; color: #00ffcc; animation: blink 1s infinite;}
+  @keyframes blink { 0%, 100% {opacity: 1;} 50% {opacity: 0;}}
   header p {font-size:1rem; color:#ddd; text-shadow: 1px 1px 5px rgba(0,0,0,0.5);}
 
   .user-profile {display:flex; align-items:center; gap:0.5rem; color:#fff; position:relative; cursor:pointer;}
@@ -74,8 +77,35 @@
   .feature:hover {transform: translateY(-5px); box-shadow:0 10px 20px rgba(255,255,255,0.3);}
 
   .channel-buttons, .app-buttons {margin-top:1rem; display:flex; flex-wrap:wrap; gap:1rem; justify-content:center;}
-  .channel-buttons a, .app-buttons a {text-decoration:none; color:#fff; background-color:#111; padding:0.8rem 1.5rem; border-radius:10px; transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;}
-  .channel-buttons a:hover, .app-buttons a:hover {background-color:#00ffcc; color:#000; transform:translateY(-3px); box-shadow:0 5px 15px rgba(0,255,204,0.5);}
+  .channel-buttons a, .app-buttons a {
+    text-decoration:none; 
+    color:#fff; 
+    background-color:#111; 
+    padding:0.8rem 1.5rem; 
+    border-radius:10px; 
+    transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    font-weight: 600;
+  }
+  .channel-buttons a:hover, .app-buttons a:hover {
+    background-color:#00ffcc; 
+    color:#000; 
+    transform:translateY(-3px); 
+    box-shadow:0 5px 15px rgba(0,255,204,0.5);
+  }
+  .icon-svg {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    filter: brightness(0) invert(1);
+    transition: filter 0.3s;
+  }
+  .channel-buttons a:hover .icon-svg,
+  .app-buttons a:hover .icon-svg {
+    filter: brightness(0) invert(0);
+  }
   .app-description {margin-top:0.5rem; text-align:center; color:#ddd; font-size:0.95rem;}
 
   .stats {display:flex; justify-content:center; gap:3rem; margin:3rem 0; flex-wrap:wrap;}
@@ -99,6 +129,10 @@
     header h1{font-size:1.6rem;}
     section h2{font-size:1.5rem;}
     #world-map{height:350px;}
+    .channel-buttons a, .app-buttons a {
+      padding: 0.7rem 1.2rem;
+      font-size: 0.9rem;
+    }
   }
 
   .chatbot-container {position: fixed; bottom:20px; right:20px; width:350px; height:500px; background:#fff; border:2px solid #000; border-radius:10px; overflow:hidden; z-index:9999; display:none; flex-direction:column;}
@@ -147,7 +181,7 @@
 <header>
   <img src="data/logo.png" alt="Logo de la Comunidad">
   <div class="header-text">
-    <h1>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</h1>
+    <h1 id="typing-title"></h1>
     <p>Bienvenido a Nuestro Sitio Web Oficial.</p>
   </div>
 </header>
@@ -232,9 +266,24 @@
     <h2>Canales</h2>
     <p>Si deseas unirte, accede a nuestros canales oficiales para aprender y conocer a nueva gente dentro de nuestra comunidad, aquí tienes los botones directos a nuestros grupos y canales totalmente oficiales, eres totalmente bienvenido, es posible que algunas de nuestras comunidades esten un poco inactivas aunque ya estamos arreglando esos problemas de forma rapida añadiendo nuevo contenido para todos:</p>
     <div class="channel-buttons">
-      <a href="https://t.me/HackPurgatory" target="_blank">Telegram</a>
-      <a href="https://discord.gg/xhKHkCW3YG" target="_blank">Discord</a>
-      <a href="https://raw.githubusercontent.com/TheOrder403/hackpurgatory/refs/heads/main/data/Session.txt" target="_blank">Session</a>
+      <a href="https://t.me/HackPurgatory" target="_blank">
+        <svg class="icon-svg" viewBox="0 0 24 24">
+          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.894 7.221l-1.97 9.28c-.145.658-.537.818-1.084.509l-3-2.21-1.446 1.394c-.159.159-.295.295-.604.295l.213-3.053 5.56-5.022c.242-.213-.054-.333-.373-.121l-6.869 4.326-2.962-.924c-.643-.203-.658-.643.135-.954l11.566-4.458c.538-.196 1.006.128.832.954z"/>
+        </svg>
+        Telegram
+      </a>
+      <a href="https://discord.gg/xhKHkCW3YG" target="_blank">
+        <svg class="icon-svg" viewBox="0 0 24 24">
+          <path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028c.462-.63.872-1.295 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128c.125-.094.25-.188.372-.284a.076.076 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.076.076 0 0 1 .078.01c.12.096.245.19.37.284a.077.077 0 0 1-.006.127a12.3 12.3 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.77 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418z"/>
+        </svg>
+        Discord
+      </a>
+      <a href="https://raw.githubusercontent.com/TheOrder403/hackpurgatory/refs/heads/main/data/Session.txt" target="_blank">
+        <svg class="icon-svg" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+        </svg>
+        Session
+      </a>
     </div>
   </section>
 
@@ -242,9 +291,24 @@
     <h2>Nuestras RDP/VPS Gratuitas Limitadas</h2>
     <p>Necesitas una RDP o VPS de forma temporal o limitada para tus trabajos o mejorar tu OPSEC y no tienes dinero? HackPurgatory te ayuda a liberar tu maximo potencial ofreciendote servicios de RDP Windows 11 con una duracion de 20 minutos de forma ilimitada y una VPS con Linux sin tiempo en la cual unicamente deberas estar en nuestro grupo para acceder a ella de forma gratuita. </p>
     <div class="channel-buttons">
-      <a href="https://app.apponfly.com/trial" target="_blank">RDP Windows 11</a>
-      <a href="https://colab.research.google.com" target="_blank">VPS Linux</a>
-      <a href="https://www.myandroid.org/playonline/androidemulator.php" target="_blank">Android Stable</a>
+      <a href="https://app.apponfly.com/trial" target="_blank">
+        <svg class="icon-svg" viewBox="0 0 24 24">
+          <path d="M4 5h16a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zm0 8h16a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-4a1 1 0 0 1 1-1z"/>
+        </svg>
+        RDP Windows 11
+      </a>
+      <a href="https://colab.research.google.com" target="_blank">
+        <svg class="icon-svg" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM9 17l-5-5 1.41-1.41L9 14.17l7.59-7.59L19 8l-10 9z"/>
+        </svg>
+        VPS Linux
+      </a>
+      <a href="https://www.myandroid.org/playonline/androidemulator.php" target="_blank">
+        <svg class="icon-svg" viewBox="0 0 24 24">
+          <path d="M17.6 9.48l1.84-3.18c.16-.31.04-.69-.26-.85-.3-.15-.68-.04-.85.26l-1.88 3.24c-2.86-1.21-6.08-1.21-8.94 0L5.65 5.71c-.16-.3-.54-.41-.85-.26-.3.16-.41.54-.26.85L6.4 9.48C3.3 11.25 1.28 14.44 1 18h22c-.28-3.56-2.3-6.75-5.4-8.52zM7 15.25c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25zm10 0c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25 1.25.56 1.25 1.25-.56 1.25-1.25 1.25z"/>
+        </svg>
+        Android Stable
+      </a>
     </div>
   </section>
 
@@ -252,7 +316,12 @@
     <h2>Reporta Actividad Sospechosa</h2>
     <p>Aqui podras reportar cualquier tipo de actividad sospechosa para que La Unidad de la comunidad pueda interactuar y decidir, La Unidad es un subgrupo de la comunidad dedicado a luchar contra estafas y scams entre otras cosas para poder crear un internet mas seguro y limpio. Para enviar el reporte se necesita que hagas un texto explicando por que y sus razonamientos.</p>
     <div class="app-buttons">
-      <a href="https://t.me/+k9xprY1LdXBjNTdk" target="_blank">Enviar Solicitud</a>
+      <a href="https://t.me/+k9xprY1LdXBjNTdk" target="_blank">
+        <svg class="icon-svg" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l5-5-1.41-1.41L10 14.17l-7.59-7.59L1 8l9 9z"/>
+        </svg>
+        Enviar Solicitud
+      </a>
     </div>
     <p class="app-description">Reporta, Sirve y Protege.</p>
   </section>
@@ -278,6 +347,45 @@
 
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
+  function startTypingAnimation() {
+    const typingTitle = document.getElementById('typing-title');
+    const titleText = '𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™';
+    let charIndex = 0;
+    
+    function typeWriter() {
+      if (charIndex < titleText.length) {
+        typingTitle.innerHTML = titleText.substring(0, charIndex + 1) + '<span class="typing-cursor">|</span>';
+        charIndex++;
+        setTimeout(typeWriter, 100);
+      } else {
+        typingTitle.innerHTML = titleText;
+      }
+    }
+    
+    typeWriter();
+  }
+  
+  window.addEventListener("load", () => {
+    const preloader = document.getElementById("preloader");
+    
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
+          const opacity = window.getComputedStyle(preloader).opacity;
+          if (opacity === '0') {
+            setTimeout(startTypingAnimation, 300);
+            observer.disconnect();
+          }
+        }
+      });
+    });
+    
+    observer.observe(preloader, { attributes: true, attributeFilter: ['style'] });
+    
+    setTimeout(() => {
+      startTypingAnimation();
+    }, 11000);
+  });
  
   const toggle = document.getElementById('menu-toggle');
   const menu = document.getElementById('menu');
@@ -339,10 +447,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
