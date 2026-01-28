@@ -47,6 +47,22 @@
             font-size: 2rem;
             margin-bottom: 0.5rem;
             text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+            min-height: 2.5rem;
+        }
+        
+        .typing-container {
+            display: inline-block;
+        }
+        
+        .typing-cursor {
+            display: inline-block;
+            color: #ff3333;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% {opacity: 1;}
+            50% {opacity: 0;}
         }
         
         header p {
@@ -171,6 +187,10 @@
             text-align: center;
             font-weight: bold;
             box-shadow: 0 4px 8px rgba(255,51,51,0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
         }
         
         .exposed-person-btn:hover {
@@ -182,7 +202,6 @@
         
         .exposed-person-btn .person-name {
             font-size: 1.2rem;
-            margin-bottom: 0.3rem;
             display: block;
         }
         
@@ -208,6 +227,10 @@
             border-radius: 10px;
             transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
             border: 1px solid #ff3333;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-weight: 600;
         }
         
         .contact-buttons a:hover {
@@ -215,6 +238,18 @@
             color: #000;
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(255,51,51,0.5);
+        }
+        
+        .icon-svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            filter: brightness(0) invert(1);
+            transition: filter 0.3s;
+        }
+        
+        .contact-buttons a:hover .icon-svg {
+            filter: brightness(0) invert(0);
         }
         
         footer {
@@ -378,7 +413,8 @@
                 padding: 1rem;
                 margin-bottom: 0.5rem;
                 box-sizing: border-box;
-                display: block;
+                display: flex;
+                justify-content: center;
             }
             
          
@@ -446,7 +482,7 @@
 <header>
     <img src="https://hackpurgatory.es/data/logo.png" alt="Logo de la Comunidad">
     <div class="header-text">
-        <h1>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</h1>
+        <h1 id="typing-title"></h1>
         <p>Bienvenido a Nuestra Comunidad.</p>
     </div>
 </header>
@@ -497,8 +533,18 @@
     </section>
     
     <div class="contact-buttons">
-        <a href="https://hackpurgatory.es">Volver al Inicio</a>
-        <a href="https://t.me/HackPurgatory" target="_blank">Reportar a La Unidad</a>
+        <a href="https://hackpurgatory.es">
+            <svg class="icon-svg" viewBox="0 0 24 24">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
+            Volver al Inicio
+        </a>
+        <a href="https://t.me/HackPurgatory" target="_blank">
+            <svg class="icon-svg" viewBox="0 0 24 24">
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.894 7.221l-1.97 9.28c-.145.658-.537.818-1.084.509l-3-2.21-1.446 1.394c-.159.159-.295.295-.604.295l.213-3.053 5.56-5.022c.242-.213-.054-.333-.373-.121l-6.869 4.326-2.962-.924c-.643-.203-.658-.643.135-.954l11.566-4.458c.538-.196 1.006.128.832.954z"/>
+            </svg>
+            Reportar a La Unidad
+        </a>
     </div>
 </main>
 
@@ -507,7 +553,28 @@
 </footer>
 
 <script>
-  
+    function startTypingAnimation() {
+        const typingTitle = document.getElementById('typing-title');
+        const titleText = '𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™';
+        let charIndex = 0;
+        
+        function typeWriter() {
+            if (charIndex < titleText.length) {
+                typingTitle.innerHTML = titleText.substring(0, charIndex + 1) + '<span class="typing-cursor">|</span>';
+                charIndex++;
+                setTimeout(typeWriter, 100);
+            } else {
+                typingTitle.innerHTML = titleText;
+            }
+        }
+        
+        typeWriter();
+    }
+    
+    window.addEventListener("load", () => {
+        setTimeout(startTypingAnimation, 300);
+    });
+ 
     const toggle = document.getElementById('menu-toggle');
     const menu = document.getElementById('menu');
     toggle.addEventListener('click', () => {
@@ -517,7 +584,4 @@
 </script>
 
 </body>
-
 </html>
-
-
