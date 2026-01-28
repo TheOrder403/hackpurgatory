@@ -47,6 +47,22 @@
             font-size: 2rem;
             margin-bottom: 0.5rem;
             text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+            min-height: 2.5rem;
+        }
+        
+        .typing-container {
+            display: inline-block;
+        }
+        
+        .typing-cursor {
+            display: inline-block;
+            color: #ff3333;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% {opacity: 1;}
+            50% {opacity: 0;}
         }
         
         header p {
@@ -170,6 +186,10 @@
             font-size: 1rem;
             cursor: pointer;
             min-width: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.7rem;
         }
         
         .nav-button:hover {
@@ -177,6 +197,18 @@
             color: #000;
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(255,51,51,0.5);
+        }
+        
+        .icon-svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            filter: brightness(0) invert(1);
+            transition: filter 0.3s;
+        }
+        
+        .nav-button:hover .icon-svg {
+            filter: brightness(0) invert(0);
         }
         
         .post-counter {
@@ -368,7 +400,7 @@
 <header>
     <img src="https://hackpurgatory.es/data/logo.png" alt="Logo de la Comunidad">
     <div class="header-text">
-        <h1>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</h1>
+        <h1 id="typing-title"></h1>
         <p>Bienvenido a Nuestra Comunidad.</p>
     </div>
 </header>
@@ -403,10 +435,30 @@
         <iframe id="tgFrame"></iframe>
         
         <div class="navigation-controls">
-            <button class="nav-button" onclick="goFirst()">⏮ Primero</button>
-            <button class="nav-button" onclick="goPrev()">◀ Atrás</button>
-            <button class="nav-button" onclick="goNext()">▶ Adelante</button>
-            <button class="nav-button" onclick="goLast()">⏭ Último</button>
+            <button class="nav-button" onclick="goFirst()">
+                <svg class="icon-svg" viewBox="0 0 24 24">
+                    <path d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6zM6 6h2v12H6z"/>
+                </svg>
+                ⏮ Primero
+            </button>
+            <button class="nav-button" onclick="goPrev()">
+                <svg class="icon-svg" viewBox="0 0 24 24">
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
+                </svg>
+                ◀ Atrás
+            </button>
+            <button class="nav-button" onclick="goNext()">
+                <svg class="icon-svg" viewBox="0 0 24 24">
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
+                </svg>
+                ▶ Adelante
+            </button>
+            <button class="nav-button" onclick="goLast()">
+                <svg class="icon-svg" viewBox="0 0 24 24">
+                    <path d="M5.59 7.41L10.18 12l-4.59 4.59L7 18l6-6-6-6zM16 6v12h2V6z"/>
+                </svg>
+                ⏭ Último
+            </button>
         </div>
         
         <div class="post-counter">
@@ -421,6 +473,28 @@
 </footer>
 
 <script>
+    function startTypingAnimation() {
+        const typingTitle = document.getElementById('typing-title');
+        const titleText = '𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™';
+        let charIndex = 0;
+        
+        function typeWriter() {
+            if (charIndex < titleText.length) {
+                typingTitle.innerHTML = titleText.substring(0, charIndex + 1) + '<span class="typing-cursor">|</span>';
+                charIndex++;
+                setTimeout(typeWriter, 100);
+            } else {
+                typingTitle.innerHTML = titleText;
+            }
+        }
+        
+        typeWriter();
+    }
+    
+    window.addEventListener("load", () => {
+        setTimeout(startTypingAnimation, 300);
+    });
+    
     const channel = "onlywebchannel";
     const firstPost = 2;
     const lastPost = 1790; 
@@ -483,7 +557,6 @@
 </script>
 
 <script>
-    
     const toggle = document.getElementById('menu-toggle');
     const menu = document.getElementById('menu');
     toggle.addEventListener('click', () => {
