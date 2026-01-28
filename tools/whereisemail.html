@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tools - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</title>
+    <meta name="description" content="HackPurgatory Tools">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.es/data/logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: #000;
+            color: #fff;
+            padding: 2rem;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            padding: 2rem;
+            background: rgba(0,0,0,0.7);
+            border-radius: 10px;
+            border: 1px solid #ff3333;
+            box-shadow: 0 0 20px rgba(255,51,51,0.2);
+        }
+        
+        h1 {
+            color: #ff3333;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            text-shadow: 0 0 10px rgba(255,51,51,0.5);
+        }
+        
+        .json-container {
+            background: rgba(0,0,0,0.9);
+            border: 1px solid #ff3333;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: left;
+            margin: 1.5rem 0;
+            overflow-x: auto;
+        }
+        
+        pre {
+            color: #ff3333;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            line-height: 1.5;
+        }
+        
+        .info {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(255,51,51,0.1);
+            border: 1px solid #ff3333;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: #ff9999;
+        }
+        
+        .info strong {
+            color: #ff3333;
+        }
+        
+        .redirect-message {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: rgba(255,51,51,0.1);
+            border: 1px solid #ff3333;
+            border-radius: 8px;
+        }
+        
+        .redirect-message h2 {
+            color: #ff3333;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 10px rgba(255,51,51,0.5);
+        }
+        
+        .loading-spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255,51,51,0.3);
+            border-top: 4px solid #ff3333;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 1rem auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .email-display {
+            background: rgba(255,51,51,0.1);
+            border: 1px solid #ff3333;
+            border-radius: 6px;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-family: monospace;
+            font-size: 1.1rem;
+            word-break: break-all;
+            color: #ff9999;
+        }
+        
+        .warning {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            background: rgba(255,51,51,0.2);
+            border: 1px solid #ff3333;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #ff6666;
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            
+            .container {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 1.6rem;
+            }
+            
+            .json-container {
+                padding: 1rem;
+            }
+            
+            pre {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="jsonDisplay">
+            <h1>Email SEON API</h1>
+            <div class="json-container">
+                <pre id="jsonContent"></pre>
+            </div>
+            <div class="info">
+                <p><strong>Uso:</strong> Añade el parámetro ?search=email@dominio.com para buscar información</p>
+                <p><strong>Ejemplo:</strong> /tools/whereisemail.html?search=ejemplo@gmail.com</p>
+            </div>
+        </div>
+        
+        <div id="redirectSection" style="display: none;">
+            <div class="redirect-message">
+                <div class="loading-spinner"></div>
+                <h2>Buscando...</h2>
+                <div class="email-display" id="searchingEmail"></div>
+                <div class="warning">
+                    Recuerda, HackPurgatory nunca te pedira dinero.
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script>
+    const toolInfo = {
+        "tool": "Email SEON Registered",
+        "description": "Herramienta de busqueda de sitios registrados de un email en mas de 600 sitios webs de forma activa.",
+        "author": "𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™",
+        "version": "2.7",
+        "endpoint": "/tools/whereisemail.html?search={email}",
+        "example": "https://hackpurgatory.es/tools/whereisemail.html?search=ejemplo@gmail.com",
+    };
+    
+    function getQueryParam(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
+    
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+    
+    function performRedirect(email) {
+        if (!isValidEmail(email)) {
+            alert('Error: Email no válido. Formato correcto: usuario@dominio.com');
+            return false;
+        }
+        
+        const encodedEmail = encodeURIComponent(email);
+        const redirectUrl = `https://seon.hackpurgatory.org/search/sync?value=${encodedEmail}`;
+        
+        document.getElementById('jsonDisplay').style.display = 'none';
+        document.getElementById('redirectSection').style.display = 'block';
+        document.getElementById('searchingEmail').textContent = email;
+        
+        setTimeout(() => {
+            window.location.href = redirectUrl;
+        }, 2000);
+        
+        return true;
+    }
+    
+    window.addEventListener("load", () => {
+        document.getElementById('jsonContent').textContent = JSON.stringify(toolInfo, null, 2);
+        
+        const searchParam = getQueryParam('search');
+        
+        if (searchParam) {
+            performRedirect(searchParam);
+        }
+    });
+</script>
+
+</body>
+</html>
