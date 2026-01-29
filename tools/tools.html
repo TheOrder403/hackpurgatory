@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ - Tools</title>
+    <meta name="description" content="Tools - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.es/data/logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html, body {
+            width: 100%;
+            height: 100%;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: #000;
+        }
+        
+        header {
+            background-color: rgba(0,0,0,0.5);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #fff;
+            justify-content: space-between;
+            position: relative;
+        }
+        
+        header img {
+            max-width: 80px;
+        }
+        
+        .header-text {
+            flex: 1 1 200px;
+        }
+        
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+            min-height: 2.5rem;
+        }
+        
+        .typing-container {
+            display: inline-block;
+        }
+        
+        .typing-cursor {
+            display: inline-block;
+            color: #ff3333;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% {opacity: 1;}
+            50% {opacity: 0;}
+        }
+        
+        header p {
+            font-size: 1rem;
+            color: #ddd;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+        
+        nav {
+            background-color: rgba(0,0,0,0.5);
+            position: relative;
+        }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 1rem;
+            z-index: 1000;
+        }
+        
+        .menu-toggle div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+        
+        .menu-toggle.active div:nth-child(1) {
+            transform: rotate(45deg) translate(5px,5px);
+        }
+        
+        .menu-toggle.active div:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px,-5px);
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            transition: max-height 0.3s;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 1rem;
+            display: block;
+            transition: color 0.3s, background 0.3s, transform 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: #fff;
+            color: #000;
+            border-radius: 5px;
+            transform: translateY(-2px);
+        }
+        
+        main {
+            padding: 3rem 1rem;
+            max-width: 1200px;
+            margin: 3rem auto;
+            background-color: rgba(0,0,0,0.65);
+            border-radius: 15px;
+        }
+        
+        section {
+            margin-bottom: 3rem;
+        }
+        
+        section h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #ff3333;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            color: #ff3333;
+        }
+        
+        .tools-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: rgba(255,51,51,0.1);
+            border: 1px solid #ff3333;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .tools-section h3 {
+            color: #ff3333;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-shadow: 0 0 10px rgba(255,51,51,0.3);
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .tool-card {
+            background: rgba(255,51,51,0.1);
+            border: 1px solid #ff3333;
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            text-align: center;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .tool-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,51,51,0.1), transparent);
+            transition: left 0.7s;
+        }
+        
+        .tool-card:hover::before {
+            left: 100%;
+        }
+        
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255,51,51,0.3);
+            background: rgba(255,51,51,0.15);
+            border-color: #fff;
+        }
+        
+        .tool-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: rgba(255,51,51,0.1);
+            border: 1px solid #ff3333;
+            padding: 10px;
+        }
+        
+        .tool-icon svg {
+            width: 30px;
+            height: 30px;
+            fill: #ff3333;
+        }
+        
+        .tool-card h4 {
+            color: #ff3333;
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+            text-shadow: 0 0 5px rgba(255,51,51,0.2);
+        }
+        
+        .tool-card p {
+            color: #ddd;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            margin-bottom: 1rem;
+        }
+        
+        .tool-status {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-top: 0.5rem;
+        }
+        
+        .status-available {
+            background: rgba(255,51,51,0.2);
+            color: #ff6666;
+            border: 1px solid #ff6666;
+        }
+        
+        .status-loading {
+            background: rgba(255,255,0,0.2);
+            color: #ffff00;
+            border: 1px solid #ffff00;
+        }
+        
+        .status-unavailable {
+            background: rgba(102,0,0,0.5);
+            color: #990000;
+            border: 1px solid #660000;
+            opacity: 0.7;
+        }
+        
+        .loading-container {
+            text-align: center;
+            padding: 3rem;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255,51,51,0.3);
+            border-top: 5px solid #ff3333;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1.5rem;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .contact-buttons {
+            margin-top: 2rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        .contact-buttons a {
+            text-decoration: none;
+            color: #fff;
+            background-color: #111;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #ff3333;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-weight: 600;
+        }
+        
+        .contact-buttons a:hover {
+            background-color: #ff3333;
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255,51,51,0.5);
+        }
+        
+        .icon-svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+            filter: brightness(0) invert(1);
+            transition: filter 0.3s;
+        }
+        
+        .contact-buttons a:hover .icon-svg {
+            filter: brightness(0) invert(0);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            border-top: 1px solid #fff;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            
+            html, body {
+                overflow-x: hidden;
+                width: 100%;
+                position: relative;
+            }
+           
+            main {
+                padding: 1rem;
+                margin: 1rem auto;
+                width: calc(100% - 1rem);
+                max-width: 100%;
+                overflow: hidden;
+            }
+           
+            .menu-toggle {
+                display: flex;
+                position: absolute;
+                right: 15px;
+                top: 15px;
+            }
+            
+            nav {
+                padding-top: 50px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                max-height: 0;
+                overflow: hidden;
+                background-color: rgba(0,0,0,0.95);
+                position: absolute;
+                width: 100%;
+                top: 70px;
+                left: 0;
+                z-index: 999;
+                padding: 0;
+            }
+            
+            nav ul.show {
+                max-height: 500px;
+                padding-bottom: 10px;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+                width: 100%;
+            }
+            
+            nav ul li a {
+                padding: 15px 10px;
+                font-size: 1rem;
+                width: 100%;
+                box-sizing: border-box;
+            }
+           
+            header {
+                justify-content: center;
+                text-align: center;
+                padding: 70px 15px 15px;
+                flex-direction: column;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            header img {
+                max-width: 60px;
+                margin-bottom: 10px;
+            }
+            
+            header h1 {
+                font-size: 1.4rem;
+                margin-bottom: 0.3rem;
+                word-wrap: break-word;
+                padding: 0 10px;
+            }
+            
+            header p {
+                font-size: 0.9rem;
+                padding: 0 10px;
+            }
+           
+            section h2 {
+                font-size: 1.3rem;
+                display: block;
+                text-align: center;
+                margin: 0 auto 1rem;
+                padding: 0 15px;
+                word-wrap: break-word;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .tools-section {
+                padding: 1.5rem;
+                margin: 2rem 0;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .tools-section h3 {
+                font-size: 1.4rem;
+                margin-bottom: 1rem;
+            }
+            
+            .tools-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .tool-card {
+                padding: 1rem;
+                min-height: 180px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            
+            .tool-card h4 {
+                font-size: 1.1rem;
+            }
+            
+            .tool-card p {
+                font-size: 0.9rem;
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+                width: 100%;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            
+            .contact-buttons a {
+                width: 100%;
+                text-align: center;
+                padding: 1rem;
+                margin-bottom: 0.5rem;
+                box-sizing: border-box;
+                display: flex;
+                justify-content: center;
+            }
+           
+            .contact-buttons a,
+            nav ul li a,
+            .tool-card {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                box-sizing: border-box;
+            }
+           
+            * {
+                max-width: 100%;
+            }
+           
+            section {
+                margin-bottom: 2rem;
+                padding: 0 0.5rem;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+       
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.2rem;
+                padding: 0 5px;
+            }
+            
+            .tools-section {
+                padding: 1rem;
+            }
+            
+            .tools-section h3 {
+                font-size: 1.2rem;
+            }
+            
+            .tool-icon {
+                width: 50px;
+                height: 50px;
+            }
+            
+            .tool-icon svg {
+                width: 25px;
+                height: 25px;
+            }
+          
+            p, h1, h2, h3, h4, span, a, div {
+                overflow-wrap: break-word !important;
+                word-wrap: break-word !important;
+                word-break: break-word !important;
+                hyphens: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="https://hackpurgatory.es/data/logo.png" alt="Logo de la Comunidad">
+    <div class="header-text">
+        <h1 id="typing-title"></h1>
+        <p>Herramientas Disponibles</p>
+    </div>
+</header>
+
+<nav>
+    <div class="menu-toggle" id="menu-toggle">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <ul id="menu">
+	  <li><a href="https://hackpurgatory.es">Sobre Nosotros</a></li>
+	  <li><a href="https://hackpurgatory.es">Información</a></li>
+  	  <li><a href="https://hackpurgatory.es">Canales</a></li>
+  	  <li><a href="https://t.me/HackPurgatory">Reportar</a></li>
+  	  <li><a href="https://hackpurgatory.es">Free RDP/VPS</a></li>
+  	  <li><a href="https://hackpurgatory.es">Estadisticas</a></li>
+  	  <li><a href="https://hackpurgatory.es/Channel/messages.html">Recursos</a></li>
+	  <li><a href="https://hackpurgatory.es/Exposed/link.txt">Expuestos</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section id="tools">
+        <div class="tools-section">
+            <h3>Herramientas Disponibles</h3>
+            <p>Selecciona una herramienta para utilizar:</p>
+            
+            <div id="loadingTools" class="loading-container">
+                <div class="loading-spinner"></div>
+                <p>Actualizando...</p>
+            </div>
+            
+            <div id="toolsGrid" class="tools-grid" style="display: none;">
+               
+            </div>
+            
+            <div id="noTools" style="display: none; text-align: center; padding: 2rem;">
+                <p>No se encontraron herramientas disponibles.</p>
+            </div>
+        </div>
+    </section>
+    
+    <div class="contact-buttons">
+        <a href="https://hackpurgatory.es">
+            <svg class="icon-svg" viewBox="0 0 24 24">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
+            Volver al Inicio
+        </a>
+        <a href="https://t.me/HackPurgatory" target="_blank">
+            <svg class="icon-svg" viewBox="0 0 24 24">
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.894 7.221l-1.97 9.28c-.145.658-.537.818-1.084.509l-3-2.21-1.446 1.394c-.159.159-.295.295-.604.295l.213-3.053 5.56-5.022c.242-.213-.054-.333-.373-.121l-6.869 4.326-2.962-.924c-.643-.203-.658-.643.135-.954l11.566-4.458c.538-.196 1.006.128.832.954z"/>
+            </svg>
+            Reportar a La Unidad
+        </a>
+    </div>
+</main>
+
+<footer>
+    &copy; 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ 2025. Todos los derechos reservados.
+</footer>
+
+<script>
+    function startTypingAnimation() {
+        const typingTitle = document.getElementById('typing-title');
+        const titleText = '𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™';
+        let charIndex = 0;
+        
+        function typeWriter() {
+            if (charIndex < titleText.length) {
+                typingTitle.innerHTML = titleText.substring(0, charIndex + 1) + '<span class="typing-cursor">|</span>';
+                charIndex++;
+                setTimeout(typeWriter, 100);
+            } else {
+                typingTitle.innerHTML = titleText;
+            }
+        }
+        
+        typeWriter();
+    }
+    
+    const availableTools = [
+        {
+            name: "Email SEON",
+            description: "Busqueda en mas de 600 sitios para posibles registros por email",
+            icon: `<svg viewBox="0 0 24 24">
+                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>`,
+            filename: "email.html",
+            status: "loading"
+        },
+        {
+            name: "Phone SEON",
+            description: "Busqueda en mas de 50 sitios para posibles registros por número de teléfono",
+            icon: `<svg viewBox="0 0 24 24">
+                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+            </svg>`,
+            filename: "whereisphone.html",
+            status: "loading"
+        },
+        {
+            name: "Peru Number",
+            description: "Busqueda de informacion en base a números peruanos ",
+            icon: `<svg viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+            </svg>`,
+            filename: "peruphone.html",
+            status: "loading"
+        },
+	{
+            name: "Cuba Number",
+            description: "Busqueda de informacion en base a números cubanos ",
+            icon: `<svg viewBox="0 0 24 24">
+                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+            </svg>`,
+            filename: "cuba.html",
+            status: "loading"
+        },
+        {
+            name: "CallApp",
+            description: "Busqueda de información de números usando CallApp API",
+            icon: `<svg viewBox="0 0 24 24">
+                <path d="M20 15.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.02.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.28-.26.36-.65.25-1C8.7 6.45 8.5 5.25 8.5 4c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1zM12 3v10l3-3h6V3h-9z"/>
+            </svg>`,
+            filename: "callapp.html",
+            status: "loading"
+        },
+        {
+            name: "Truecaller",
+            description: "Busqueda de información de números usando Truecaller API",
+            icon: `<svg viewBox="0 0 24 24">
+                <path d="M12 1C5.93 1 1 5.93 1 12s4.93 11 11 11 11-4.93 11-11S18.07 1 12 1zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+            </svg>`,
+            filename: "truecaller.html",
+            status: "loading"
+        }
+    ];
+    
+    function checkToolAvailability(tool) {
+        return new Promise((resolve) => {
+            const testUrl = `./${tool.filename}?test=1`;
+            const xhr = new XMLHttpRequest();
+            
+            xhr.timeout = 3000;
+            
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200 || xhr.status === 0) {
+                        resolve(true);
+                    } else {
+                        resolve(false);
+                    }
+                }
+            };
+            
+            xhr.onerror = function() {
+                resolve(false);
+            };
+            
+            xhr.ontimeout = function() {
+                resolve(false);
+            };
+            
+            try {
+                xhr.open('HEAD', testUrl, true);
+                xhr.send();
+            } catch (e) {
+                resolve(false);
+            }
+        });
+    }
+    
+    async function detectTools() {
+        const loadingElement = document.getElementById('loadingTools');
+        const toolsGrid = document.getElementById('toolsGrid');
+        const noToolsElement = document.getElementById('noTools');
+        
+        let availableCount = 0;
+        
+        for (let tool of availableTools) {
+            const isAvailable = await checkToolAvailability(tool);
+            tool.status = isAvailable ? 'available' : 'unavailable';
+            tool.available = isAvailable;
+            
+            if (isAvailable) {
+                availableCount++;
+            }
+        }
+        
+        loadingElement.style.display = 'none';
+        
+        if (availableCount > 0) {
+            toolsGrid.style.display = 'grid';
+            renderTools();
+        } else {
+            noToolsElement.style.display = 'block';
+        }
+    }
+    
+    function renderTools() {
+        const toolsGrid = document.getElementById('toolsGrid');
+        toolsGrid.innerHTML = '';
+        
+        availableTools.forEach(tool => {
+            const toolCard = document.createElement(tool.available ? 'a' : 'div');
+            
+            if (tool.available) {
+                toolCard.href = `./${tool.filename}`;
+                toolCard.className = 'tool-card';
+            } else {
+                toolCard.className = 'tool-card';
+                toolCard.style.cursor = 'not-allowed';
+                toolCard.style.opacity = '0.7';
+            }
+            
+            toolCard.innerHTML = `
+                <div class="tool-icon">${tool.icon}</div>
+                <h4>${tool.name}</h4>
+                <p>${tool.description}</p>
+                <div class="tool-status status-${tool.status}">
+                    ${tool.status === 'available' ? 'Disponible' : 
+                      tool.status === 'loading' ? 'Verificando...' : 'No disponible'}
+                </div>
+            `;
+            
+            if (!tool.available) {
+                toolCard.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    alert(`La herramienta "${tool.name}" no está disponible actualmente.`);
+                });
+            }
+            
+            toolsGrid.appendChild(toolCard);
+        });
+    }
+    
+    window.addEventListener("load", () => {
+        setTimeout(startTypingAnimation, 300);
+        detectTools();
+    });
+ 
+    const toggle = document.getElementById('menu-toggle');
+    const menu = document.getElementById('menu');
+    toggle.addEventListener('click', () => {
+        menu.classList.toggle('show');
+        toggle.classList.toggle('active');
+    });
+</script>
+
+</body>
+</html>
