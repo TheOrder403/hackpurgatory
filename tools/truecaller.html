@@ -183,7 +183,7 @@
         "source": "Truecaller API",
         "phone_format": "Número sin + (mínimo 8 dígitos)",
         "endpoint": "/tools/truecaller.html?search={phone}",
-        "example": "https://hackpurgatory.es/tools/truecaller.html?search=34666666666",
+        "example": "https://hackpurgatory.es/truecaller.html?search=34666666666",
         "valid_examples": ["34666666666", "51987654321", "1123456789", "987654321"]
     };
     
@@ -210,7 +210,7 @@
         }
         
         const encodedPhone = encodeURIComponent(cleanedPhone);
-        const redirectUrl = `https://truecaller.hackpurgatory.org/?number=${encodedPhone}`;
+        const redirectUrl = `https://truecaller.hackpurgatory.org/truecaller?number=${encodedPhone}`;
         
         document.getElementById('jsonDisplay').style.display = 'none';
         document.getElementById('redirectSection').style.display = 'block';
@@ -236,3 +236,4 @@
 
 </body>
 </html>
+
