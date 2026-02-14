@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ - Canal Telegram</title>
-    <meta name="description" content="Channel - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™">
+    <title>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ - Menu</title>
+    <meta name="description" content="Menu - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™">
     <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.es/data/logo.png">
     <style>
         * {
@@ -136,46 +136,90 @@
             margin: 3rem auto;
             background-color: rgba(0,0,0,0.65);
             border-radius: 15px;
-            text-align: center;
         }
         
-        h2 {
+        section {
+            margin-bottom: 3rem;
+        }
+        
+        section h2 {
             font-size: 1.8rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             border-bottom: 2px solid #ff3333;
             display: inline-block;
             padding-bottom: 0.5rem;
             color: #ff3333;
         }
         
-        .telegram-container {
-            margin: 2rem 0;
+        .exposed-people-section {
+            margin: 3rem 0;
             padding: 2rem;
             background: rgba(255,51,51,0.1);
             border: 1px solid #ff3333;
             border-radius: 10px;
+            text-align: center;
         }
         
-        iframe {
-            width: 100%;
-            max-width: 500px;
-            height: 600px;
-            border: none;
-            margin: 20px 0;
-            background: #fff;
+        .exposed-people-section h3 {
+            color: #ff3333;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-shadow: 0 0 10px rgba(255,51,51,0.3);
+        }
+        
+        .exposed-people-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+        
+        .exposed-person-btn {
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(135deg, #ff3333, #990000);
+            padding: 1rem 1.8rem;
             border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(255,51,51,0.3);
+            transition: all 0.3s ease;
+            border: 2px solid #ff3333;
+            min-width: 250px;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(255,51,51,0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
         }
         
-        .navigation-controls {
+        .exposed-person-btn:hover {
+            background: linear-gradient(135deg, #ff6666, #cc0000);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(255,51,51,0.5);
+            color: #000;
+        }
+        
+        .exposed-person-btn .person-name {
+            font-size: 1.2rem;
+            display: block;
+        }
+        
+        .exposed-person-btn .person-alias {
+            font-size: 0.9rem;
+            color: #ddd;
+            font-style: italic;
+        }
+        
+        .contact-buttons {
+            margin-top: 2rem;
             display: flex;
             flex-wrap: wrap;
             gap: 1rem;
             justify-content: center;
-            margin: 1.5rem 0;
         }
         
-        .nav-button {
+        .contact-buttons a {
             text-decoration: none;
             color: #fff;
             background-color: #111;
@@ -183,16 +227,13 @@
             border-radius: 10px;
             transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
             border: 1px solid #ff3333;
-            font-size: 1rem;
-            cursor: pointer;
-            min-width: 150px;
             display: flex;
             align-items: center;
-            justify-content: center;
             gap: 0.7rem;
+            font-weight: 600;
         }
         
-        .nav-button:hover {
+        .contact-buttons a:hover {
             background-color: #ff3333;
             color: #000;
             transform: translateY(-3px);
@@ -207,20 +248,8 @@
             transition: filter 0.3s;
         }
         
-        .nav-button:hover .icon-svg {
+        .contact-buttons a:hover .icon-svg {
             filter: brightness(0) invert(0);
-        }
-        
-        .post-counter {
-            margin: 1.5rem 0;
-            font-size: 1.1rem;
-            color: #ddd;
-        }
-        
-        .post-counter span {
-            color: #ff3333;
-            font-weight: bold;
-            font-size: 1.2rem;
         }
         
         footer {
@@ -231,18 +260,13 @@
             font-size: 0.9rem;
         }
         
-        .channel-info {
-            background: rgba(255,51,51,0.1);
+        .warning-banner {
+            background: rgba(255,51,51,0.2);
             border: 1px solid #ff3333;
             border-radius: 8px;
             padding: 1rem;
-            margin: 1.5rem auto;
-            max-width: 600px;
-        }
-        
-        .channel-info h3 {
-            color: #ff3333;
-            margin-bottom: 0.5rem;
+            margin: 1.5rem 0;
+            text-align: center;
         }
         
         @media (max-width: 768px) {
@@ -253,6 +277,7 @@
                 position: relative;
             }
             
+           
             main {
                 padding: 1rem;
                 margin: 1rem auto;
@@ -261,6 +286,7 @@
                 overflow: hidden;
             }
             
+           
             .menu-toggle {
                 display: flex;
                 position: absolute;
@@ -304,6 +330,7 @@
                 box-sizing: border-box;
             }
             
+           
             header {
                 justify-content: center;
                 text-align: center;
@@ -330,7 +357,8 @@
                 padding: 0 10px;
             }
             
-            h2 {
+           
+            section h2 {
                 font-size: 1.3rem;
                 display: block;
                 text-align: center;
@@ -341,51 +369,105 @@
                 box-sizing: border-box;
             }
             
-            iframe {
-                height: 500px;
+            
+            .exposed-people-section {
+                padding: 1.5rem;
+                margin: 2rem 0;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            
+            .exposed-people-section h3 {
+                font-size: 1.4rem;
+                margin-bottom: 1rem;
+            }
+            
+            .exposed-people-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .exposed-person-btn {
+                min-width: 100%;
+                padding: 0.9rem 1.2rem;
+            }
+            
+            .exposed-person-btn .person-name {
+                font-size: 1.1rem;
+            }
+            
+            .exposed-person-btn .person-alias {
+                font-size: 0.85rem;
+            }
+         
+            .contact-buttons {
+                flex-direction: column;
+                width: 100%;
+                padding: 0;
+                box-sizing: border-box;
+            }
+            
+            .contact-buttons a {
+                width: 100%;
+                text-align: center;
+                padding: 1rem;
+                margin-bottom: 0.5rem;
+                box-sizing: border-box;
+                display: flex;
+                justify-content: center;
+            }
+            
+         
+            .warning-banner {
+                padding: 0.8rem;
+                margin: 1rem 0;
+                font-size: 0.9rem;
+                width: 100%;
+                box-sizing: border-box;
+                word-wrap: break-word;
+            }
+            
+           
+            .contact-buttons a,
+            nav ul li a,
+            .exposed-person-btn {
+                min-height: 44px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-align: center;
+                box-sizing: border-box;
+            }
+            
+           
+            * {
                 max-width: 100%;
             }
             
-            .telegram-container {
-                padding: 1rem;
-            }
-            
-            .navigation-controls {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .nav-button {
+           
+            section {
+                margin-bottom: 2rem;
+                padding: 0 0.5rem;
                 width: 100%;
-                max-width: 300px;
-                padding: 1rem;
-            }
-            
-            .channel-info {
-                padding: 0.8rem;
-                margin: 1rem 0;
+                box-sizing: border-box;
             }
         }
         
+       
         @media (max-width: 480px) {
             header h1 {
                 font-size: 1.2rem;
                 padding: 0 5px;
             }
             
-            iframe {
-                height: 400px;
+            .exposed-people-section {
+                padding: 1rem;
             }
             
-            .nav-button {
-                padding: 0.8rem;
-                font-size: 0.9rem;
+            .exposed-people-section h3 {
+                font-size: 1.2rem;
             }
-            
-            .post-counter {
-                font-size: 1rem;
-            }
-            
+          
             p, h1, h2, h3, h4, span, a, div {
                 overflow-wrap: break-word !important;
                 word-wrap: break-word !important;
@@ -418,53 +500,45 @@
   	  <li><a href="https://t.me/HackPurgatory">Reportar</a></li>
   	  <li><a href="https://hackpurgatory.es">Free RDP/VPS</a></li>
   	  <li><a href="https://hackpurgatory.es">Estadisticas</a></li>
-  	  <li><a href="https://hackpurgatory.es/Channel/messages.html">Recursos</a></li>
+  	  <li><a href="https://hackpurgatory.es/Channel/Tools.html">Recursos</a></li>
 	  <li><a href="https://hackpurgatory.es/Exposed/Exposed.html">Expuestos</a></li>
     </ul>
 </nav>
 
 <main>
-    <h2>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</h2>
     
-    <div class="channel-info">
-        <h3>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™</h3>
-        <p>Explora los mensajes del canal utilizando los controles de navegación</p>
-    </div>
+    <section id="exposed-people">
+        <div class="exposed-people-section">
+            <div class="exposed-people-buttons">
+                <a href="https://hackpurgatory.org/Channel/News/blog.html" class="exposed-person-btn" target="_blank">
+                    <span class="person-name">Noticias</span>
+                    <span class="person-alias">News</span>
+                </a>
+                <a href="https://hackpurgatory.org/Channel/Censored/blog.html" class="exposed-person-btn" target="_blank">
+                    <span class="person-name">Censuras</span>
+                    <span class="person-alias">Censored</span>
+                </a>
+                <a href="https://hackpurgatory.org/Channel/Tools/Tools.html" class="exposed-person-btn" target="_blank">
+                    <span class="person-name">Herramientas</span>
+                    <span class="person-alias">Tools</span>
+                </a>
+            </div>
+        </div>
+    </section>
     
-    <div class="telegram-container">
-        <iframe id="tgFrame"></iframe>
-        
-        <div class="navigation-controls">
-            <button class="nav-button" onclick="goFirst()">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <path d="M18.41 16.59L13.82 12l4.59-4.59L17 6l-6 6 6 6zM6 6h2v12H6z"/>
-                </svg>
-                ⏮ Primero
-            </button>
-            <button class="nav-button" onclick="goPrev()">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/>
-                </svg>
-                ◀ Atrás
-            </button>
-            <button class="nav-button" onclick="goNext()">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/>
-                </svg>
-                ▶ Adelante
-            </button>
-            <button class="nav-button" onclick="goLast()">
-                <svg class="icon-svg" viewBox="0 0 24 24">
-                    <path d="M5.59 7.41L10.18 12l-4.59 4.59L7 18l6-6-6-6zM16 6v12h2V6z"/>
-                </svg>
-                ⏭ Último
-            </button>
-        </div>
-        
-        <div class="post-counter">
-            <p>Post actual: <span id="postNumber"></span></p>
-            <p>Total de posts: <span id="totalPosts"></span></p>
-        </div>
+    <div class="contact-buttons">
+        <a href="https://hackpurgatory.es">
+            <svg class="icon-svg" viewBox="0 0 24 24">
+                <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+            </svg>
+            Volver al Inicio
+        </a>
+        <a href="https://t.me/HackPurgatory" target="_blank">
+            <svg class="icon-svg" viewBox="0 0 24 24">
+                <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm4.894 7.221l-1.97 9.28c-.145.658-.537.818-1.084.509l-3-2.21-1.446 1.394c-.159.159-.295.295-.604.295l.213-3.053 5.56-5.022c.242-.213-.054-.333-.373-.121l-6.869 4.326-2.962-.924c-.643-.203-.658-.643.135-.954l11.566-4.458c.538-.196 1.006.128.832.954z"/>
+            </svg>
+            Reportar a La Unidad
+        </a>
     </div>
 </main>
 
@@ -494,69 +568,7 @@
     window.addEventListener("load", () => {
         setTimeout(startTypingAnimation, 300);
     });
-    
-    const channel = "onlywebchannel";
-    const firstPost = 2;
-    const lastPost = 1790; 
-
-    let currentPost = firstPost;
-
-    const frame = document.getElementById("tgFrame");
-    const postNumber = document.getElementById("postNumber");
-    const totalPosts = document.getElementById("totalPosts");
-
-    function loadPost() {
-        frame.src = `https://t.me/${channel}/${currentPost}?embed=1`;
-        postNumber.textContent = currentPost;
-        totalPosts.textContent = lastPost;
-    }
-
-    function goFirst() {
-        currentPost = firstPost;
-        loadPost();
-    }
-
-    function goLast() {
-        currentPost = lastPost;
-        loadPost();
-    }
-
-    function goNext() {
-        if (currentPost < lastPost) {
-            currentPost++;
-            loadPost();
-        }
-    }
-
-    function goPrev() {
-        if (currentPost > firstPost) {
-            currentPost--;
-            loadPost();
-        }
-    }
-
-        loadPost();
-    
-    
-    document.addEventListener('keydown', function(event) {
-        switch(event.key) {
-            case 'ArrowLeft':
-                goPrev();
-                break;
-            case 'ArrowRight':
-                goNext();
-                break;
-            case 'Home':
-                goFirst();
-                break;
-            case 'End':
-                goLast();
-                break;
-        }
-    });
-</script>
-
-<script>
+ 
     const toggle = document.getElementById('menu-toggle');
     const menu = document.getElementById('menu');
     toggle.addEventListener('click', () => {
