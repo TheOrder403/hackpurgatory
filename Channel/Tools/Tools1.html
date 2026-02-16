@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ - Herramientas</title>
+    <meta name="description" content="Tools - 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://hackpurgatory.es/data/logo.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        html, body {
+            width: 100%;
+            min-height: 100%;
+            color: #fff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: #000;
+            scroll-behavior: smooth;
+        }
+        
+        header {
+            background-color: rgba(0,0,0,0.5);
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            border-bottom: 2px solid #fff;
+            justify-content: space-between;
+            position: relative;
+            z-index: 100;
+        }
+        
+        header img {
+            max-width: 80px;
+        }
+        
+        .header-text {
+            flex: 1 1 200px;
+        }
+        
+        header h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.7);
+            min-height: 2.5rem;
+        }
+        
+        .typing-cursor {
+            display: inline-block;
+            color: #ff3333;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% {opacity: 1;}
+            50% {opacity: 0;}
+        }
+        
+        header p {
+            font-size: 1rem;
+            color: #ddd;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+        
+        nav {
+            background-color: rgba(0,0,0,0.5);
+            position: relative;
+            z-index: 100;
+        }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 1rem;
+            z-index: 1000;
+        }
+        
+        .menu-toggle div {
+            width: 25px;
+            height: 3px;
+            background-color: #fff;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+        
+        .menu-toggle.active div:nth-child(1) {
+            transform: rotate(45deg) translate(5px,5px);
+        }
+        
+        .menu-toggle.active div:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active div:nth-child(3) {
+            transform: rotate(-45deg) translate(5px,-5px);
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            transition: max-height 0.3s;
+        }
+        
+        nav ul li {
+            margin: 0 1rem;
+        }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            padding: 1rem;
+            display: block;
+            transition: color 0.3s, background 0.3s, transform 0.3s;
+        }
+        
+        nav ul li a:hover {
+            background-color: #fff;
+            color: #000;
+            border-radius: 5px;
+            transform: translateY(-2px);
+        }
+        
+        main {
+            padding: 2rem 1rem;
+            max-width: 800px;
+            margin: 2rem auto;
+            background-color: rgba(0,0,0,0.65);
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #ff3333;
+            display: inline-block;
+            padding-bottom: 0.5rem;
+            color: #ff3333;
+        }
+        
+        .telegram-container {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background: linear-gradient(145deg, rgba(20,0,0,0.3) 0%, rgba(40,0,0,0.5) 100%);
+            border: 1px solid #ff3333;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255,51,51,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .telegram-container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff3333, transparent, #ff3333, transparent, #ff3333);
+            border-radius: 22px;
+            z-index: -1;
+            animation: borderGlow 3s linear infinite;
+            opacity: 0.5;
+        }
+        
+        @keyframes borderGlow {
+            0% { filter: hue-rotate(0deg); opacity: 0.5; }
+            50% { filter: hue-rotate(20deg); opacity: 0.8; }
+            100% { filter: hue-rotate(0deg); opacity: 0.5; }
+        }
+        
+        /* Buscador */
+        .search-container {
+            margin: 20px 0 30px;
+            padding: 20px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 15px;
+            border: 1px solid #ff3333;
+            position: sticky;
+            top: 10px;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .search-box {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .search-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 15px 20px;
+            background: rgba(0,0,0,0.7);
+            border: 2px solid #ff3333;
+            border-radius: 50px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: #fff;
+            box-shadow: 0 0 20px rgba(255,51,51,0.5);
+            transform: scale(1.02);
+        }
+        
+        .search-input::placeholder {
+            color: #999;
+        }
+        
+        .search-button {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #1a0000 0%, #330000 100%);
+            border: 2px solid #ff3333;
+            color: #fff;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s;
+            min-width: 120px;
+        }
+        
+        .search-button:hover {
+            background: #ff3333;
+            color: #000;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,51,51,0.4);
+        }
+        
+        .search-results {
+            margin-top: 15px;
+            text-align: left;
+            color: #ff9999;
+            font-size: 0.95rem;
+            padding: 10px;
+            border-top: 1px solid rgba(255,51,51,0.3);
+        }
+        
+        .highlight {
+            background: #ff3333;
+            color: #000;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-weight: bold;
+        }
+        
+        /* Feed de posts */
+        .posts-feed {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .post-item {
+            margin: 30px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(255,51,51,0.3);
+            transition: all 0.3s;
+            background: rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,51,51,0.3);
+        }
+        
+        .post-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255,51,51,0.5);
+            border-color: #ff3333;
+        }
+        
+        .post-item.highlighted {
+            border: 3px solid #ff3333;
+            box-shadow: 0 0 30px rgba(255,51,51,0.8);
+            transform: scale(1.02);
+        }
+        
+        .post-header {
+            padding: 10px 15px;
+            background: linear-gradient(90deg, #1a0000, #330000);
+            border-bottom: 1px solid #ff3333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #ff9999;
+            font-weight: bold;
+        }
+        
+        .post-number {
+            color: #ff3333;
+            font-size: 1.1rem;
+            text-shadow: 0 0 10px rgba(255,51,51,0.5);
+        }
+        
+        .post-iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            background: #fff;
+            display: block;
+            filter: invert(0.9) hue-rotate(180deg) brightness(0.9) contrast(1.1);
+            transition: all 0.3s;
+        }
+        
+        .post-iframe:hover {
+            filter: invert(0.85) hue-rotate(180deg) brightness(1) contrast(1.2);
+        }
+        
+        /* Placeholder mientras carga */
+        .post-placeholder {
+            width: 100%;
+            height: 600px;
+            background: linear-gradient(110deg, #1a1a1a 30%, #2a2a2a 50%, #1a1a1a 70%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+        
+        @keyframes loading {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        
+        .progress-bar-container {
+            width: 100%;
+            margin: 20px 0;
+            position: sticky;
+            top: 120px;
+            z-index: 999;
+            background: rgba(0,0,0,0.8);
+            padding: 15px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            border: 1px solid #ff3333;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: rgba(255,51,51,0.2);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #ff3333, #ff6666, #ff3333);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+            position: relative;
+            animation: progressPulse 2s infinite;
+        }
+        
+        @keyframes progressPulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.8; }
+            100% { opacity: 1; }
+        }
+        
+        .post-counter {
+            margin: 1.5rem 0;
+            font-size: 1.2rem;
+            color: #ddd;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            background: rgba(0,0,0,0.5);
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            border: 1px solid rgba(255,51,51,0.3);
+            position: sticky;
+            top: 190px;
+            z-index: 998;
+            backdrop-filter: blur(10px);
+        }
+        
+        .post-counter p {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .post-counter span {
+            color: #ff3333;
+            font-weight: bold;
+            font-size: 1.4rem;
+            text-shadow: 0 0 10px rgba(255,51,51,0.5);
+            background: rgba(255,51,51,0.1);
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,51,51,0.3);
+        }
+        
+        .load-more-btn {
+            background: linear-gradient(135deg, #1a0000 0%, #330000 100%);
+            border: 2px solid #ff3333;
+            color: #fff;
+            padding: 1rem 3rem;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin: 30px auto;
+            display: inline-block;
+            font-weight: bold;
+            box-shadow: 0 5px 20px rgba(255,51,51,0.3);
+        }
+        
+        .load-more-btn:hover {
+            background: #ff3333;
+            color: #000;
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255,51,51,0.6);
+        }
+        
+        .load-more-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .scroll-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #ff3333;
+            color: #000;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 24px;
+            border: 2px solid #fff;
+            transition: all 0.3s;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .scroll-top-btn.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-top-btn:hover {
+            transform: scale(1.1);
+            background: #fff;
+            color: #ff3333;
+        }
+        
+        .scroll-to-last-btn {
+            position: fixed;
+            bottom: 90px;
+            right: 30px;
+            background: #330000;
+            color: #fff;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 20px;
+            border: 2px solid #ff3333;
+            transition: all 0.3s;
+            z-index: 1000;
+        }
+        
+        .scroll-to-last-btn:hover {
+            background: #ff3333;
+            color: #000;
+            transform: scale(1.1);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            border-top: 1px solid #fff;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        .loading-indicator {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(0,0,0,0.95);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 2px solid #ff3333;
+            z-index: 10000;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(255,51,51,0.3);
+            backdrop-filter: blur(10px);
+            display: none;
+        }
+        
+        .loading-indicator.active {
+            display: block;
+            animation: fadeIn 0.3s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translate(-50%, -40%); }
+            to { opacity: 1; transform: translate(-50%, -50%); }
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #330000;
+            border-top: 3px solid #ff3333;
+            border-right: 3px solid #ff3333;
+            border-radius: 50%;
+            animation: spin 1s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 0 20px #ff3333;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .no-results {
+            padding: 50px;
+            text-align: center;
+            color: #ff9999;
+            font-size: 1.2rem;
+            border: 2px dashed #ff3333;
+            border-radius: 15px;
+            margin: 20px 0;
+        }
+        
+        @media (max-width: 768px) {
+            main {
+                padding: 1rem;
+                margin: 1rem auto;
+                width: 95%;
+            }
+            
+            .menu-toggle {
+                display: flex;
+                position: absolute;
+                right: 15px;
+                top: 15px;
+            }
+            
+            nav {
+                padding-top: 50px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                max-height: 0;
+                overflow: hidden;
+                background-color: rgba(0,0,0,0.95);
+                position: absolute;
+                width: 100%;
+                top: 70px;
+                left: 0;
+                z-index: 999;
+                padding: 0;
+            }
+            
+            nav ul.show {
+                max-height: 500px;
+                padding-bottom: 10px;
+            }
+            
+            nav ul li {
+                margin: 0;
+                text-align: center;
+                width: 100%;
+            }
+            
+            nav ul li a {
+                padding: 15px 10px;
+                width: 100%;
+            }
+            
+            header {
+                padding: 70px 15px 15px;
+                flex-direction: column;
+            }
+            
+            header h1 {
+                font-size: 1.4rem;
+            }
+            
+            .search-container {
+                top: 5px;
+                padding: 15px;
+            }
+            
+            .search-box {
+                flex-direction: column;
+            }
+            
+            .search-button {
+                width: 100%;
+            }
+            
+            .progress-bar-container {
+                top: 150px;
+            }
+            
+            .post-counter {
+                flex-direction: column;
+                gap: 0.5rem;
+                top: 220px;
+            }
+            
+            .post-iframe {
+                height: 500px;
+            }
+            
+            .post-placeholder {
+                height: 500px;
+            }
+            
+            .scroll-top-btn, .scroll-to-last-btn {
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .scroll-to-last-btn {
+                bottom: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="https://hackpurgatory.es/data/logo.png" alt="Logo de la Comunidad">
+    <div class="header-text">
+        <h1 id="typing-title"></h1>
+        <p>Bienvenido a Nuestra Comunidad.</p>
+    </div>
+</header>
+
+<main>    
+    <div class="telegram-container">
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" id="searchInput" class="search-input" placeholder="Buscar por número de post">
+                <button class="search-button" onclick="searchPost()">Buscar</button>
+                <button class="search-button" onclick="clearSearch()">Limpiar</button>
+            </div>
+            <div id="searchResults" class="search-results"></div>
+        </div>
+        
+        <div class="progress-bar-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+        </div>
+        
+       
+        <div id="postsFeed" class="posts-feed"></div>
+        
+        <div class="post-counter">
+            <p>Posts cargados: <span id="loadedCount">0</span> / <span id="totalPosts">1902</span></p>
+            <p>Mostrando: <span id="showingFrom">1903</span> → <span id="showingTo">2</span></p>
+        </div>
+        
+        <button id="loadMoreBtn" class="load-more-btn">Cargar Mas Contenido</button>
+    </div>
+</main>
+
+<footer>
+    &copy; 𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™ 2025. Todos los derechos reservados.
+</footer>
+
+<div class="loading-indicator" id="loadingIndicator">
+    <div class="spinner"></div>
+    <p>Cargando posts...</p>
+</div>
+
+<div class="scroll-top-btn" id="scrollTopBtn" onclick="scrollToTop()">↑</div>
+<div class="scroll-to-last-btn" id="scrollToLastBtn" onclick="scrollToLast()">↓</div>
+
+<script>
+    function startTypingAnimation() {
+        const typingTitle = document.getElementById('typing-title');
+        const titleText = '𝐇𝐀𝐂𝐊 [𝐏𝐔𝐑𝐆𝐀𝐓𝐎𝐑𝐘]™';
+        let charIndex = 0;
+        
+        function typeWriter() {
+            if (charIndex < titleText.length) {
+                typingTitle.innerHTML = titleText.substring(0, charIndex + 1) + '<span class="typing-cursor">|</span>';
+                charIndex++;
+                setTimeout(typeWriter, 100);
+            } else {
+                typingTitle.innerHTML = titleText;
+            }
+        }
+        
+        typeWriter();
+    }
+    
+    window.addEventListener("load", () => {
+        setTimeout(startTypingAnimation, 300);
+    });
+    
+   
+    const channel = "MyWebBackup";
+    const FIRST_POST = 2;
+    const LAST_POST = 1903;
+    const TOTAL_POSTS = LAST_POST - FIRST_POST + 1; 
+    
+    
+    const POSTS_PER_BATCH = 10;
+    
+   
+    let currentPost = LAST_POST; 
+    let loadedPosts = 0;
+    let isLoading = false;
+    let allPostsLoaded = false;
+    let posts = []; 
+    
+    
+    const postsFeed = document.getElementById("postsFeed");
+    const progressFill = document.getElementById("progressFill");
+    const loadedCountSpan = document.getElementById("loadedCount");
+    const totalPostsSpan = document.getElementById("totalPosts");
+    const showingFromSpan = document.getElementById("showingFrom");
+    const showingToSpan = document.getElementById("showingTo");
+    const loadMoreBtn = document.getElementById("loadMoreBtn");
+    const loadingIndicator = document.getElementById("loadingIndicator");
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    const searchInput = document.getElementById("searchInput");
+    const searchResults = document.getElementById("searchResults");
+    
+    
+    totalPostsSpan.textContent = TOTAL_POSTS;
+    showingFromSpan.textContent = LAST_POST;
+    showingToSpan.textContent = FIRST_POST;
+    
+    
+    function updateProgress() {
+        const percentage = (loadedPosts / TOTAL_POSTS) * 100;
+        progressFill.style.width = percentage + '%';
+        loadedCountSpan.textContent = loadedPosts;
+    }
+    
+    
+    function setLoading(loading) {
+        isLoading = loading;
+        if (loading) {
+            loadingIndicator.classList.add('active');
+            loadMoreBtn.disabled = true;
+        } else {
+            loadingIndicator.classList.remove('active');
+            loadMoreBtn.disabled = false;
+        }
+    }
+    
+    
+    function setupIframe(iframe, postNumber) {
+        iframe.onload = function() {
+            try {
+                if (this.contentWindow) {
+                    const iframeDoc = this.contentDocument || this.contentWindow.document;
+                    if (iframeDoc) {
+                        const style = iframeDoc.createElement('style');
+                        style.innerHTML = `
+                            body, html { 
+                                overflow: hidden !important; 
+                                height: auto !important;
+                                margin: 0 !important;
+                                padding: 0 !important;
+                            }
+                            .tgme_widget_message_wrap {
+                                max-height: none !important;
+                                overflow: visible !important;
+                            }
+                            .tgme_widget_message {
+                                max-height: none !important;
+                            }
+                        `;
+                        iframeDoc.head.appendChild(style);
+                    }
+                }
+            } catch(e) {
+                console.log("Error");
+            }
+        };
+    }
+    
+    
+    function createPostItem(postNumber) {
+        const postDiv = document.createElement('div');
+        postDiv.className = 'post-item';
+        postDiv.id = `post-${postNumber}`;
+        postDiv.setAttribute('data-post-number', postNumber);
+        
+        
+        const header = document.createElement('div');
+        header.className = 'post-header';
+        header.innerHTML = `
+            <span>Post #${postNumber}</span>
+            <span class="post-number">${channel}</span>
+        `;
+        
+      
+        const placeholder = document.createElement('div');
+        placeholder.className = 'post-placeholder';
+        placeholder.innerHTML = 'Cargando...';
+        
+        
+        const iframe = document.createElement('iframe');
+        iframe.className = 'post-iframe';
+        iframe.src = `https://t.me/${channel}/${postNumber}?embed=1`;
+        iframe.setAttribute('data-post', postNumber);
+        
+       
+        setupIframe(iframe, postNumber);
+        
+        
+        iframe.onload = function() {
+            placeholder.remove();
+            loadedPosts++;
+            updateProgress();
+        };
+        
+        iframe.onerror = function() {
+            placeholder.innerHTML = 'Error';
+            loadedPosts++;
+            updateProgress();
+        };
+        
+       
+        postDiv.appendChild(header);
+        postDiv.appendChild(placeholder);
+        postDiv.appendChild(iframe);
+        
+       
+        posts.push(postDiv);
+        
+        return postDiv;
+    }
+    
+    
+    function loadNextBatch() {
+        if (isLoading || allPostsLoaded) return;
+        
+        setLoading(true);
+        
+       
+        const postsLeft = currentPost - FIRST_POST + 1;
+        const batchSize = Math.min(POSTS_PER_BATCH, postsLeft);
+        
+ 
+        for (let i = 0; i < batchSize; i++) {
+            const postNumber = currentPost - i;
+            const postItem = createPostItem(postNumber);
+            postsFeed.appendChild(postItem);
+        }
+        
+        
+        currentPost -= batchSize;
+        
+       
+        if (currentPost >= FIRST_POST) {
+            showingFromSpan.textContent = currentPost + batchSize;
+            showingToSpan.textContent = currentPost + 1;
+        }
+        
+       
+        if (currentPost < FIRST_POST) {
+            allPostsLoaded = true;
+            loadMoreBtn.textContent = "Cargado Correctamente";
+            loadMoreBtn.disabled = true;
+            showingToSpan.textContent = FIRST_POST;
+        }
+        
+        setLoading(false);
+    }
+    
+    
+    function searchPost() {
+        const searchTerm = searchInput.value.trim();
+        
+        if (!searchTerm) {
+            searchResults.innerHTML = 'Ingresa el numero de Post';
+            return;
+        }
+        
+        const postNumber = parseInt(searchTerm);
+        
+        if (isNaN(postNumber) || postNumber < FIRST_POST || postNumber > LAST_POST) {
+            searchResults.innerHTML = `No es valido`;
+            return;
+        }
+        
+        
+        document.querySelectorAll('.post-item.highlighted').forEach(el => {
+            el.classList.remove('highlighted');
+        });
+        
+        
+        const existingPost = document.getElementById(`post-${postNumber}`);
+        
+        if (existingPost) {
+            
+            existingPost.classList.add('highlighted');
+            existingPost.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            searchResults.innerHTML = `Encontrado`;
+            
+            
+            setTimeout(() => {
+                existingPost.classList.remove('highlighted');
+            }, 3000);
+        } else {
+            
+            searchResults.innerHTML = `Espera a que se cargue automáticamente.`;
+        }
+    }
+    
+   
+    function clearSearch() {
+        searchInput.value = '';
+        searchResults.innerHTML = '';
+        document.querySelectorAll('.post-item.highlighted').forEach(el => {
+            el.classList.remove('highlighted');
+        });
+    }
+    
+    
+    loadMoreBtn.addEventListener('click', loadNextBatch);
+    
+
+    window.addEventListener('scroll', () => {
+        
+        if (window.scrollY > 300) {
+            scrollTopBtn.classList.add('visible');
+        } else {
+            scrollTopBtn.classList.remove('visible');
+        }
+        
+        
+        if (!isLoading && !allPostsLoaded) {
+            const scrollPosition = window.scrollY + window.innerHeight;
+            const pageHeight = document.documentElement.scrollHeight;
+            
+            // Si estamos a 500px del final, cargar más
+            if (pageHeight - scrollPosition < 500) {
+                loadNextBatch();
+            }
+        }
+    });
+    
+    
+    function scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+    
+    
+    function scrollToLast() {
+        const lastPostElement = document.getElementById(`post-${LAST_POST}`);
+        if (lastPostElement) {
+            lastPostElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+            // Si no está cargado, cargar más hasta que aparezca
+            if (!allPostsLoaded) {
+                loadNextBatch();
+                setTimeout(scrollToLast, 500);
+            }
+        }
+    }
+    
+    
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            searchPost();
+        }
+    });
+    
+    
+    window.scrollToTop = scrollToTop;
+    window.scrollToLast = scrollToLast;
+    window.searchPost = searchPost;
+    window.clearSearch = clearSearch;
+    
+    
+    loadNextBatch();
+    
+</script>
+
+</body>
+</html>
