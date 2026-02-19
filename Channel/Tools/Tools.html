@@ -729,7 +729,7 @@
    
     const channel = "MyWebBackup";
     const FIRST_POST = 2;
-    const LAST_POST = 1903;
+    const LAST_POST = 1911;
     const TOTAL_POSTS = LAST_POST - FIRST_POST + 1; 
     
     
@@ -967,7 +967,7 @@
             const scrollPosition = window.scrollY + window.innerHeight;
             const pageHeight = document.documentElement.scrollHeight;
             
-            // Si estamos a 500px del final, cargar más
+            
             if (pageHeight - scrollPosition < 500) {
                 loadNextBatch();
             }
@@ -988,7 +988,7 @@
         if (lastPostElement) {
             lastPostElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
         } else {
-            // Si no está cargado, cargar más hasta que aparezca
+            
             if (!allPostsLoaded) {
                 loadNextBatch();
                 setTimeout(scrollToLast, 500);
