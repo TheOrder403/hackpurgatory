@@ -27,10 +27,54 @@
   "logo": "https://hackpurgatory.es/data/logo.png"
 }
 </script>
-</head>
-
-
 <style>
+ 
+  .floating-notification {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 255, 204, 0.3);
+    border-radius: 50px;
+    padding: 12px 25px;
+    display: flex;
+    gap: 25px;
+    z-index: 10000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.5s ease;
+  }
+  .floating-notification a {
+    color: #00ffcc;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    transition: all 0.3s;
+    text-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+  }
+  .floating-notification a:hover {
+    color: #fff;
+    transform: scale(1.1);
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @media(max-width:768px) {
+    .floating-notification {
+      bottom: 10px;
+      left: 10px;
+      padding: 8px 15px;
+      gap: 15px;
+    }
+    .floating-notification a {
+      font-size: 0.9rem;
+    }
+  }
+
   * {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
   html,body {width:100%; height:100%; color:#fff; line-height:1.6; overflow-x:hidden;}
   #bg-video {position:fixed; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:-1; transform: scale(1.2);}
@@ -39,6 +83,56 @@
   .loader-bar {width:200px; height:15px; border:2px solid #00ffcc; border-radius:10px; overflow:hidden; background: rgba(255,255,255,0.1);}
   .loader-bar .progress {width:0; height:100%; background:#00ffcc; animation: fillBar 10s linear forwards;}
   @keyframes fillBar { from{width:0;} to{width:100%;} }
+
+
+  .ticker-wrapper {
+    background-color: #000;
+    color: #fff;
+    overflow: hidden;
+    white-space: nowrap;
+    border-top: 2px solid #00ffcc;
+    border-bottom: 2px solid #00ffcc;
+    padding: 8px 0;
+    width: 100%;
+    position: relative;
+    box-shadow: 0 0 15px rgba(0,255,204,0.3);
+  }
+  .ticker-wrapper::before,
+  .ticker-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 50px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .ticker-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, #000, transparent);
+  }
+  .ticker-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, #000, transparent);
+  }
+  .ticker {
+    display: inline-block;
+    animation: tickerMove 20s linear infinite;
+    font-weight: bold;
+    font-size: 1rem;
+    color: #fff;
+    padding-left: 100%;
+  }
+  .ticker span {
+    display: inline-block;
+    padding-right: 50px;
+    color: #00ffcc;
+    text-shadow: 0 0 8px rgba(0,255,204,0.8);
+  }
+  @keyframes tickerMove {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-100%); }
+  }
 
   header {background-color: rgba(0,0,0,0.5); padding:1rem 2rem; display:flex; align-items:center; gap:1rem; flex-wrap:wrap; border-bottom:2px solid #fff; justify-content:space-between; position:relative;}
   header img {max-width:80px;}
@@ -173,9 +267,13 @@
   <div class="loader-bar"><div class="progress"></div></div>
 </div>
 
+
+<div class="floating-notification">
+  <a href="https://t.me/HackPurgatory" target="_blank">Join Telegram!</a>
+</div>
+
 <video autoplay muted loop playsinline id="bg-video">
   <source src="data/fondo.webm" type="video/webm">
-  
 </video>
 
 <header>
@@ -186,7 +284,18 @@
   </div>
 </header>
 
+
 <nav>
+  <div class="ticker-wrapper">
+    <div class="ticker">
+      <span>ᛉ Construye: Crea y Construye una Comunidad Mejor.</span>
+      <span>ᛟ Extermina: Elimina y Reporta Cualquier Actividad Ilegal.</span>
+      <span>ꑭ Protege: Protege La Libertad del Conocimiento Libre.</span>
+      <span>⊝ Sirve: Unete, Limpia Internet de Estafas y Contenido Explicito.</span>
+      <span>⦻ Apoya: Apoya y ayuda a Usuarios Nuevos o Comparte Recursos Libremente.</span>
+      <span>🗲 Comparte: Comparte Para que Nuestro Objetivo Llegue a mas sitios.</span>
+    </div>
+  </div>
   <div class="menu-toggle" id="menu-toggle"><div></div><div></div><div></div></div>
   <ul id="menu">
     <li><a href="#About">Nosotros</a></li>
@@ -197,6 +306,7 @@
     <li><a href="#stats">Estadisticas</a></li>
     <li><a href="https://hackpurgatory.es/Channel/Tools.html">Recursos</a></li>
     <li><a href="https://hackpurgatory.org/Exposed/Exposed.html">Expuestos</a></li>
+    <li><a href="http://hackpurgatory.org/tools/tools.html">EndPoints</a></li>
   </ul>
 </nav>
 
@@ -447,10 +557,3 @@
 </script>
 </body>
 </html>
-
-
-
-
-
-
-
